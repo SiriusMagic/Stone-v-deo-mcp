@@ -1,5 +1,10 @@
 # Cambios de Stone Video
 
+## 0.3.0 (versionCode 3)
+- La pestaña «MV» pasa a llamarse **VM** (videos musicales) en español.
+- **Fuera Playlists:** la pestaña y las opciones «Añadir a playlist» del reproductor, del menú del video y de la
+  selección. Pestañas: ♪ Música | Videos · Shorts · Carpetas · VM · Géneros.
+
 ## 0.2.0 (versionCode 2)
 - Pestañas: **♪ Música** primero, con un separador, y luego Videos · Shorts · Carpetas · Playlists · MV · **Géneros**.
 - **Géneros** ahora agrupa videos por su género (terror, romance…): el que pongas en «Editar información de video» o

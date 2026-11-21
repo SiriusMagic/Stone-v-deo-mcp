@@ -43,12 +43,6 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     onSetPlaylistCover: (String, Uri) -> Unit = { _, _ -> },
     onRestorePlaylistCover: (String) -> Unit = {},
     selectionActions: LibrarySelectionActions = LibrarySelectionActions()) {
-    if (tab == LibraryTab.Playlists) {
-        PlaylistLibrary(state, collection, select, canPlay, currentId, onPlay, modifier,
-            onCreatePlaylist, onRemoveFromPlaylist, compact,
-            onSetPlaylistCover, onRestorePlaylistCover)
-        return
-    }
     val mediaSongs = songs.filter(tab::accepts)
     if (tab.isVideo) {
         VideoLibraryContent(mediaSongs, state, currentId, modifier, onPlay, onFolder,
@@ -64,7 +58,6 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     var selectedIds by remember(collection) { mutableStateOf<Set<String>>(emptySet()) }
     var menuVisible by remember(collection) { mutableStateOf(false) }
     var deleteConfirmVisible by remember(collection) { mutableStateOf(false) }
-    var pickPlaylist by remember { mutableStateOf(false) }
     var tagSong by remember { mutableStateOf<Song?>(null) }
     val context = androidx.compose.ui.platform.LocalContext.current
     androidx.activity.compose.BackHandler(enabled = managing) { managing = false; selectedIds = emptySet() }
@@ -141,7 +134,6 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     }
     val selectedSongs = visible.filter { it.id in selectedIds }
     if (managing) SelectionActionBar(videos = false, enabled = selectedIds.isNotEmpty(),
-        onAddTo = { pickPlaylist = true },
         onPlayNext = { selectionActions.onPlayNext(selectedSongs); managing = false; selectedIds = emptySet() },
         onShare = { runCatching { com.zirakusa.stone.nativeapp.data.library.user.SongActions.shareMany(context, selectedSongs) } },
         onDelete = { deleteConfirmVisible = true })
@@ -159,8 +151,6 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
             }
         }
     }
-    if (pickPlaylist) MultiPlaylistPicker(state.playlists, visible.filter { it.id in selectedIds },
-        selectionActions.onAddToPlaylist) { pickPlaylist = false; managing = false; selectedIds = emptySet() }
     tagSong?.let { song ->
         com.zirakusa.stone.nativeapp.feature.player.sheets.TagEditorSheet(song, close = { tagSong = null },
             saved = { tagSong = null; managing = false; selectedIds = emptySet(); selectionActions.onTagsSaved() })

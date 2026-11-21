@@ -36,7 +36,6 @@
     <string name="video_folders">Videoordner</string>
     <string name="video_layout_grid">Zur Rasteransicht</string>
     <string name="video_layout_list">Zur Listenansicht</string>
-    <string name="playlists">Playlists</string>
     <string name="sort">Sortieren</string>
     <string name="settings">Einstellungen</string>
     <string name="sort_title">Titel (A-Z)</string>
@@ -118,16 +117,6 @@
     <string name="eq_jazz">Jazz</string>
     <string name="eq_classical">Klassik</string>
     <string name="eq_latin">Latin</string>
-    <string name="favorite_songs">Lieblingssongs</string>
-    <string name="recently_played">Zuletzt gespielt</string>
-    <string name="most_played">Meistgespielt</string>
-    <string name="with_lyrics">Mit Songtext</string>
-    <string name="new_playlist">Neue Playlist</string>
-    <string name="playlist_name">Name der Playlist</string>
-    <string name="create">Erstellen</string>
-    <string name="remove_from_playlist">Aus Playlist entfernen</string>
-    <string name="add_to_playlist_title">Zur Playlist hinzufügen</string>
-    <string name="no_playlists">Erstelle zuerst eine Playlist</string>
     <string name="recently_deleted">Zuletzt gelöscht</string>
     <string name="restore">Wiederherstellen</string>
     <string name="recently_deleted_hint">Stelle einen Song wieder her oder lösche ihn endgültig vom Gerät.</string>
@@ -269,12 +258,6 @@
     <string name="settings_home_shortcuts">Startsymbole</string>
     <string name="home_shortcut_hint">Wähle, welche Verknüpfungen in der Hauptleiste erscheinen.</string>
     <string name="restore_defaults">Standardeinstellungen wiederherstellen</string>
-    <string name="playlist_cover_title">Playlist-Cover</string>
-    <string name="playlist_cover_message">Wähle ein eigenes Cover oder kehre zum automatischen Cover-Mosaik zurück.</string>
-    <string name="choose_cover">Cover wählen</string>
-    <string name="restore_automatic_cover">Automatisch wiederherstellen</string>
-    <string name="playing">Wird abgespielt</string>
-    <string name="empty_playlist">Leere Playlist</string>
     <string name="video_metadata_description">Beschreibung oder Kommentar</string>
     <string name="video_metadata_author">Autor oder Ersteller</string>
     <string name="video_metadata_date">Datum</string>
@@ -319,7 +302,6 @@
     <string name="video_scale_short_fill">Strecken</string>
     <string name="repeat_off">Keine Wiederholung</string>
     <string name="hold_speed_banner">Wiedergabegeschwindigkeit</string>
-    <string name="selection_add_to">Hinzufügen zu</string>
     <string name="selection_play_next">Als Nächstes abspielen</string>
     <string name="selection_no_playlists">Du hast noch keine Playlists. Erstelle sie im Tab Playlists.</string>
     <string name="close">Schließen</string>
@@ -463,7 +445,6 @@
     <string name="play_mode_all">Alle wiederholen</string>
     <string name="play_mode_one">Einen Song wiederholen</string>
     <string name="play_mode_shuffle">Alles mischen</string>
-    <string name="playlist_no_songs_yet">Noch keine Songs</string>
     <string name="artwork_shape">Cover-Form</string>
     <string name="artwork_round">Rund</string>
     <string name="artwork_round_spin_hint">Dreht sich beim Abspielen</string>

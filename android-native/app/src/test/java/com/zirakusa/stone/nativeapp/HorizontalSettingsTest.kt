@@ -80,7 +80,7 @@ class HorizontalSettingsTest {
         assertTrue(LibraryTab.Shorts.accepts(short)); assertFalse(LibraryTab.Shorts.accepts(clip))
         assertTrue(LibraryTab.MusicVideos.accepts(clip)); assertFalse(LibraryTab.MusicVideos.accepts(short))
         assertTrue(LibraryTab.Folders.accepts(short) && LibraryTab.Videos.accepts(clip))
-        assertEquals(listOf(LibraryTab.Music, LibraryTab.Videos, LibraryTab.Shorts, LibraryTab.Folders, LibraryTab.Playlists,
+        assertEquals(listOf(LibraryTab.Music, LibraryTab.Videos, LibraryTab.Shorts, LibraryTab.Folders,
             LibraryTab.MusicVideos, LibraryTab.Genres), LibraryTab.entries)
         val terror = video("Eso", 6_000_000, 1920, 1080).copy(genre = "Terror")
         assertTrue(LibraryTab.Genres.accepts(terror)); assertFalse(LibraryTab.Genres.accepts(terror.copy(isVideo = false)))

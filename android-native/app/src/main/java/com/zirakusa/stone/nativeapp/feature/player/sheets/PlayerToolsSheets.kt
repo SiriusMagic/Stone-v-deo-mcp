@@ -64,7 +64,7 @@ import com.zirakusa.stone.nativeapp.feature.player.tags.VideoTagEditorSheet
 /** Song currently played as audio only; mirrored from StoneApp for the options menu. */
 internal object AudioOnlySelection { var id by mutableStateOf<String?>(null) }
 
-enum class PlayerTool { Tags, Equalizer, Playlist, Share, Speed, Ringtone,
+enum class PlayerTool { Tags, Equalizer, Share, Speed, Ringtone,
     FloatingWindow, Delete }
 
 private data class ToolRow(val icon: androidx.compose.ui.graphics.vector.ImageVector, val label: Int,
@@ -110,7 +110,6 @@ internal data class PlayerOptionExtra(val icon: androidx.compose.ui.graphics.vec
     val headerTitle = song?.title?.takeIf { it.isNotBlank() } ?: state.title
     val headerArtist = song?.artist?.takeIf { it.isNotBlank() } ?: state.artist
     val rows = buildList {
-        add(ToolRow(Icons.Default.PlaylistAdd, R.string.add_to_playlist, PlayerTool.Playlist))
         add(ToolRow(Icons.Default.Share, R.string.share, PlayerTool.Share))
         add(ToolRow(Icons.Default.Speed, R.string.speed, PlayerTool.Speed))
         add(ToolRow(Icons.Default.Notifications, R.string.set_ringtone, PlayerTool.Ringtone))
@@ -366,32 +365,4 @@ private fun verticalBandValue(y: Float, height: Float): Int =
         text = { Text(stringResource(R.string.delete_song_message)) },
         confirmButton = { TextButton(onClick = confirm) { Text(stringResource(R.string.delete)) } },
         dismissButton = { TextButton(onClick = close) { Text(stringResource(R.string.cancel)) } })
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable fun PlaylistPickerSheet(song: Song, playlists: List<StonePlaylist>,
-    create: (String) -> Unit, add: (String, Song) -> Unit, close: () -> Unit) {
-    var creating by remember { mutableStateOf(false) }
-    var name by remember { mutableStateOf("") }
-    ModalBottomSheet(onDismissRequest = close, containerColor = Color(0xFF17151B)) {
-        ImmersiveWindowEffect()
-        Column(Modifier.padding(24.dp).padding(bottom = 28.dp)) {
-            Text(stringResource(R.string.add_to_playlist_title), fontSize = 26.sp, fontWeight = FontWeight.Black)
-            OutlinedButton(onClick = { creating = true }, Modifier.fillMaxWidth().padding(vertical = 12.dp)) {
-                Icon(Icons.Default.Add, null); Text(stringResource(R.string.new_playlist))
-            }
-            if (playlists.isEmpty()) Text(stringResource(R.string.no_playlists), color = MaterialTheme.colorScheme.onSurfaceVariant)
-            playlists.forEach { playlist -> Row(Modifier.fillMaxWidth().height(58.dp).clickable {
-                add(playlist.id, song); close()
-            }, verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Default.QueueMusic, null); Text(playlist.name, Modifier.padding(start = 16.dp).weight(1f))
-                if (song.id in playlist.songIds) Icon(Icons.Default.Check, null)
-            } }
-        }
-    }
-    if (creating) AlertDialog(onDismissRequest = { creating = false }, title = { ImmersiveWindowEffect(); Text(stringResource(R.string.new_playlist)) },
-        text = { OutlinedTextField(name, { name = it }, label = { Text(stringResource(R.string.playlist_name)) }) },
-        confirmButton = { TextButton(enabled = name.isNotBlank(), onClick = { create(name); creating = false; name = "" }) {
-            Text(stringResource(R.string.create)) } }, dismissButton = { TextButton(onClick = { creating = false }) {
-            Text(stringResource(R.string.cancel)) } })
 }

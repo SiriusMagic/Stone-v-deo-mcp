@@ -36,7 +36,6 @@
     <string name="video_folders">Dossiers vidéo</string>
     <string name="video_layout_grid">Passer en grille</string>
     <string name="video_layout_list">Passer en liste</string>
-    <string name="playlists">Playlists</string>
     <string name="sort">Trier</string>
     <string name="settings">Paramètres</string>
     <string name="sort_title">Titre (A-Z)</string>
@@ -118,16 +117,6 @@
     <string name="eq_jazz">Jazz</string>
     <string name="eq_classical">Classique</string>
     <string name="eq_latin">Latino</string>
-    <string name="favorite_songs">Chansons favorites</string>
-    <string name="recently_played">Écoutées récemment</string>
-    <string name="most_played">Les plus lues</string>
-    <string name="with_lyrics">Avec paroles</string>
-    <string name="new_playlist">Nouvelle playlist</string>
-    <string name="playlist_name">Nom de la playlist</string>
-    <string name="create">Créer</string>
-    <string name="remove_from_playlist">Retirer de la playlist</string>
-    <string name="add_to_playlist_title">Ajouter à une playlist</string>
-    <string name="no_playlists">Créez d\'abord une playlist</string>
     <string name="recently_deleted">Supprimées récemment</string>
     <string name="restore">Restaurer</string>
     <string name="recently_deleted_hint">Restaurez une chanson ou effacez-la définitivement de l\'appareil.</string>
@@ -269,12 +258,6 @@
     <string name="settings_home_shortcuts">Icônes d\'accueil</string>
     <string name="home_shortcut_hint">Choisissez les raccourcis affichés dans la barre principale.</string>
     <string name="restore_defaults">Rétablir la configuration par défaut</string>
-    <string name="playlist_cover_title">Pochette de la playlist</string>
-    <string name="playlist_cover_message">Choisissez une pochette personnalisée ou revenez à la mosaïque automatique.</string>
-    <string name="choose_cover">Choisir une pochette</string>
-    <string name="restore_automatic_cover">Rétablir l\'automatique</string>
-    <string name="playing">Lecture en cours</string>
-    <string name="empty_playlist">Playlist vide</string>
     <string name="video_metadata_description">Description ou commentaire</string>
     <string name="video_metadata_author">Auteur ou créateur</string>
     <string name="video_metadata_date">Date</string>
@@ -319,7 +302,6 @@
     <string name="video_scale_short_fill">Étirer</string>
     <string name="repeat_off">Sans répétition</string>
     <string name="hold_speed_banner">vitesse de lecture</string>
-    <string name="selection_add_to">Ajouter à</string>
     <string name="selection_play_next">Lire ensuite</string>
     <string name="selection_no_playlists">Vous n\'avez pas encore de playlists. Créez-les dans l\'onglet Playlists.</string>
     <string name="close">Fermer</string>
@@ -463,7 +445,6 @@
     <string name="play_mode_all">Tout répéter</string>
     <string name="play_mode_one">Répéter une chanson</string>
     <string name="play_mode_shuffle">Tout mélanger</string>
-    <string name="playlist_no_songs_yet">Pas encore de chansons</string>
     <string name="artwork_shape">Forme de la pochette</string>
     <string name="artwork_round">Ronde</string>
     <string name="artwork_round_spin_hint">Tourne pendant la lecture</string>

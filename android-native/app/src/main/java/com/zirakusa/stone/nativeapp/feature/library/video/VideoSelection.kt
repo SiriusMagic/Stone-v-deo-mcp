@@ -53,7 +53,7 @@ internal fun VideoSelectionState.click(song: Song, play: () -> Unit) = if (activ
 @Composable internal fun VideoSelectionBar(selection: VideoSelectionState, videos: List<Song>) {
     val context = LocalContext.current
     if (selection.active) SelectionActionBar(videos = true, enabled = selection.ids.isNotEmpty(),
-        onAddTo = {}, onPlayNext = {},
+        onPlayNext = {},
         onShare = { runCatching { SongActions.shareMany(context, videos.filter { it.id in selection.ids }) } },
         onDelete = { selection.confirmDelete = true })
 }

@@ -121,7 +121,6 @@ private val PanelColor = Color(0xFF0E0D12)
                 selectedTrackLabel(tracks, C.TRACK_TYPE_AUDIO) ?: "—") { onPickTrack(C.TRACK_TYPE_AUDIO) }
         }
         item { HorizontalDivider(Modifier.padding(vertical = 6.dp), color = StonePalette.Border) }
-        item { OptionRow(Icons.Default.PlaylistAdd, stringResource(R.string.add_to_playlist)) { onSelect(PlayerTool.Playlist) } }
         item { OptionRow(Icons.Default.Edit, stringResource(R.string.information)) { onSelect(PlayerTool.Tags) } }
         item { OptionRow(Icons.Default.Delete, stringResource(R.string.delete)) { onSelect(PlayerTool.Delete) } }
     }

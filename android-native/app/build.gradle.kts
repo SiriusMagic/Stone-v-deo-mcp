@@ -11,8 +11,8 @@ android {
         applicationId = "com.zirakusa.stone.video"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
         // Public relay that gives each phone a fixed HTTPS link (see ../relay). Empty = local only.
         // Set it with -PstoneRelayUrl=https://… or stoneRelayUrl in gradle.properties.
         val relayUrl = (project.findProperty("stoneRelayUrl") as String?).orEmpty().trimEnd('/')

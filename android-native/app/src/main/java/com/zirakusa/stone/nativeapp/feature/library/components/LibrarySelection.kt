@@ -42,14 +42,13 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.label
     }
 }
 
-/** Bottom actions for the selection. Songs: add to, play next, share, delete. Videos: share, delete. */
-@Composable internal fun SelectionActionBar(videos: Boolean, enabled: Boolean, onAddTo: () -> Unit,
+/** Bottom actions for the selection. Songs: play next, share, delete. Videos: share, delete. */
+@Composable internal fun SelectionActionBar(videos: Boolean, enabled: Boolean,
     onPlayNext: () -> Unit, onShare: () -> Unit, onDelete: () -> Unit) {
     Surface(color = StonePalette.Surface, shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp), tonalElevation = 8.dp) {
         Row(Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly) {
             if (!videos) {
-                SelectionAction(Icons.Default.PlaylistAdd, R.string.selection_add_to, enabled, onAddTo)
                 SelectionAction(Icons.Default.QueuePlayNext, R.string.selection_play_next, enabled, onPlayNext)
             }
             SelectionAction(Icons.Default.Share, R.string.share, enabled, onShare)
@@ -67,7 +66,6 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.label
     }
 }
 
-/** Adds every selected song to one playlist. */
 @Composable internal fun MultiPlaylistPicker(playlists: List<StonePlaylist>, songs: List<Song>,
     onAdd: (String, Song) -> Unit, close: () -> Unit) {
     AlertDialog(onDismissRequest = close,

@@ -63,7 +63,6 @@ import com.zirakusa.stone.nativeapp.feature.player.video.enterVideoPictureInPict
         PlayerTool.Equalizer -> EqualizerSheet(state, playback, progress, song = targetSong, close = close)
         PlayerTool.Tags -> targetSong?.let { TagEditorSheet(it, close = close, saved = edited) }
         PlayerTool.Ringtone -> targetSong?.let { RingtoneSheet(it, close) }
-        PlayerTool.Playlist -> targetSong?.let { PlaylistPickerSheet(it, playlists, onCreatePlaylist, onAddToPlaylist, close) }
         PlayerTool.Delete -> ConfirmSongAction({
             targetSong?.let { playback.remove(it.id); onDelete(it) }; close(); onEditComplete()
         }, close)

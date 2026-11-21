@@ -118,17 +118,15 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `HomeNavigationRail.kt` (74)
 - `LandscapeLibraryHeading.kt` (41)
 - `LayoutSelector.kt` (54) Compact / list / "Grande" switch, icons only;
-- `LibraryContent.kt` (186) Callbacks used by long-press selection in the library lists.
+- `LibraryContent.kt` (176) Callbacks used by long-press selection in the library lists.
 - `LibraryEmptyState.kt` (24)
 - `LibraryHeader.kt` (99)
 - `LibraryLayoutFrame.kt` (28) One content call site keeps the library alive when its surrounding layout changes.
 - `LibrarySearch.kt` (46)
-- `LibrarySelection.kt` (90) "N seleccionado" header with back and select-all, shown after a long press.
+- `LibrarySelection.kt` (88) "N seleccionado" header with back and select-all, shown after a long press.
 - `LibrarySheets.kt` (61)
 - `LibrarySongRow.kt` (73)
-- `LibraryTabs.kt` (72) Stone Video:
-- `PlaylistCards.kt` (95) Icon and tint in front of a smart playlist title.
-- `PlaylistLibrary.kt` (119)
+- `LibraryTabs.kt` (73) Stone Video:
 - `RecentlyDeletedSheet.kt` (117) Trash:
 - `SongGridCard.kt` (42) Song card of the "Grande" layout:
 
@@ -165,9 +163,9 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `PlayerLyricChip.kt` (89) Compact lyric window under the player controls:
 
 ## app/feature/player/sheets
-- `PlayerSheetsHost.kt` (91) Shared by the full player and the home dock;
+- `PlayerSheetsHost.kt` (90) Shared by the full player and the home dock;
 - `PlayerSheetsState.kt` (37) Item whose shared options menu is open;
-- `PlayerToolsSheets.kt` (398) Song currently played as audio only;
+- `PlayerToolsSheets.kt` (369) Song currently played as audio only;
 - `QueueSheet.kt` (243) Outlined "LETRAS" label in front of the subtitle of songs that have lyrics.
 - `RecommendationsSheet.kt` (80) Songs to play after [current]:
 
@@ -185,7 +183,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `VideoControlPreferences.kt` (83) Secondary actions that can be shown below a video preview or player.
 - `VideoControlRow.kt` (114) Renders the user-configurable secondary video actions in their saved order.
 - `VideoGestures.kt` (222) Handles vertical brightness/volume adjustments and horizontal track changes.
-- `VideoOptionsSheet.kt` (200) Video ⋮ menu.
+- `VideoOptionsSheet.kt` (199) Video ⋮ menu.
 - `VideoPlayers.kt` (129) Controls stay visible;
 - `VideoPreferences.kt` (67) How the video is fitted inside its available bounds.
 - `VideoSidePanels.kt` (144) ⋮ menu of the landscape video:

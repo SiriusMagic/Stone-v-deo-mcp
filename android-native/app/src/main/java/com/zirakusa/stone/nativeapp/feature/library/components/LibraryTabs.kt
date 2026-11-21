@@ -24,14 +24,15 @@ import com.zirakusa.stone.nativeapp.ui.components.StoneIcon
 import com.zirakusa.stone.nativeapp.ui.theme.StonePalette
 
 /**
- * Stone Video: Música first with a divider (the mirror of Stone, where Videos goes first), then the video tabs.
+ * Stone Video: Música first with a divider (the mirror of Stone, where Videos goes first), then the video tabs
+ * (VM = videos musicales; no playlists).
  * Géneros groups videos by their genre tag (terror, romance…), not music.
  */
 enum class LibraryTab(val label: Int) {
     Music(R.string.tab_music), Videos(R.string.videos), Shorts(R.string.tab_shorts), Folders(R.string.folders),
-    Playlists(R.string.playlists), MusicVideos(R.string.tab_music_videos), Genres(R.string.genres);
+    MusicVideos(R.string.tab_music_videos), Genres(R.string.genres);
 
-    val isVideo: Boolean get() = this != Music && this != Playlists
+    val isVideo: Boolean get() = this != Music
 
     /** Música holds every song; Shorts and MV follow [VideoKind]; the other video tabs hold every video. */
     fun accepts(song: Song): Boolean = when (this) {

@@ -36,7 +36,6 @@
     <string name="video_folders">Cartelle video</string>
     <string name="video_layout_grid">Passa a griglia</string>
     <string name="video_layout_list">Passa a elenco</string>
-    <string name="playlists">Playlist</string>
     <string name="sort">Ordina</string>
     <string name="settings">Impostazioni</string>
     <string name="sort_title">Titolo (A-Z)</string>
@@ -118,16 +117,6 @@
     <string name="eq_jazz">Jazz</string>
     <string name="eq_classical">Classica</string>
     <string name="eq_latin">Latina</string>
-    <string name="favorite_songs">Brani preferiti</string>
-    <string name="recently_played">Ascoltati di recente</string>
-    <string name="most_played">I più riprodotti</string>
-    <string name="with_lyrics">Con testo</string>
-    <string name="new_playlist">Nuova playlist</string>
-    <string name="playlist_name">Nome della playlist</string>
-    <string name="create">Crea</string>
-    <string name="remove_from_playlist">Rimuovi dalla playlist</string>
-    <string name="add_to_playlist_title">Aggiungi a playlist</string>
-    <string name="no_playlists">Crea prima una playlist</string>
     <string name="recently_deleted">Eliminati di recente</string>
     <string name="restore">Ripristina</string>
     <string name="recently_deleted_hint">Ripristina un brano o cancellalo per sempre dal dispositivo.</string>
@@ -269,12 +258,6 @@
     <string name="settings_home_shortcuts">Icone della home</string>
     <string name="home_shortcut_hint">Scegli quali scorciatoie compaiono nella barra principale.</string>
     <string name="restore_defaults">Ripristina configurazione predefinita</string>
-    <string name="playlist_cover_title">Copertina della playlist</string>
-    <string name="playlist_cover_message">Scegli una copertina personalizzata o torna al mosaico automatico.</string>
-    <string name="choose_cover">Scegli copertina</string>
-    <string name="restore_automatic_cover">Ripristina automatica</string>
-    <string name="playing">In riproduzione</string>
-    <string name="empty_playlist">Playlist vuota</string>
     <string name="video_metadata_description">Descrizione o commento</string>
     <string name="video_metadata_author">Autore o creatore</string>
     <string name="video_metadata_date">Data</string>
@@ -319,7 +302,6 @@
     <string name="video_scale_short_fill">Allunga</string>
     <string name="repeat_off">Nessuna ripetizione</string>
     <string name="hold_speed_banner">velocità di riproduzione</string>
-    <string name="selection_add_to">Aggiungi a</string>
     <string name="selection_play_next">Riproduci dopo</string>
     <string name="selection_no_playlists">Non hai ancora playlist. Creale nella scheda Playlist.</string>
     <string name="close">Chiudi</string>
@@ -463,7 +445,6 @@
     <string name="play_mode_all">Ripeti tutto</string>
     <string name="play_mode_one">Ripeti un brano</string>
     <string name="play_mode_shuffle">Mescola tutto</string>
-    <string name="playlist_no_songs_yet">Ancora nessun brano</string>
     <string name="artwork_shape">Forma della copertina</string>
     <string name="artwork_round">Rotonda</string>
     <string name="artwork_round_spin_hint">Ruota durante la riproduzione</string>
