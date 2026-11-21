@@ -38,7 +38,7 @@ class LandscapeScreenTest {
         compose.onNodeWithTag("compact-player-title").assertIsDisplayed()
         compose.onNodeWithTag("compact-player-artist").assertIsDisplayed()
         // Stone Video opens on Videos; the songs are one tab away.
-        compose.onNodeWithText(label(R.string.songs)).performScrollTo().performClick()
+        compose.onNodeWithText(label(R.string.tab_music)).performScrollTo().performClick()
         compose.onNodeWithText("Song 02").assertIsDisplayed()
         compose.onRoot().captureRoboImage("build/screenshots/$name.png")
     }
@@ -104,7 +104,7 @@ class LandscapeScreenTest {
     @Test fun emptyLibraryDoesNotCreatePlaybackControls() {
         compose.setContent { LandscapeTestContent(songs = emptyList()) }
         compose.onNodeWithText(label(R.string.no_videos)).assertIsDisplayed()
-        compose.onNodeWithText(label(R.string.songs)).performScrollTo().performClick()
+        compose.onNodeWithText(label(R.string.tab_music)).performScrollTo().performClick()
         compose.onNodeWithText(label(R.string.no_songs)).assertIsDisplayed()
         compose.onNodeWithText(label(R.string.choose_song_to_play)).assertIsDisplayed()
         compose.onNodeWithContentDescription(label(R.string.pause)).assertDoesNotExist()
@@ -114,13 +114,15 @@ class LandscapeScreenTest {
     @Test fun customizedRailRespectsVisibilityAndOrder() {
         val store = StoneSettingsStore(context)
         store.setShortcutProfile("custom")
-        store.setShortcutOrder(listOf("sort", "audio_mode_battery"))
+        store.setShortcutOrder(listOf("sort", "api_mode"))
+        store.setShortcutVisible("api_mode", true)
         compose.setContent { LandscapeTestContent(store = store) }
-        compose.onNodeWithContentDescription(label(R.string.sleep_timer)).assertDoesNotExist()
+        // Stone Video has no audio-mode or sleep-timer shortcuts (always Cine).
+        compose.onNodeWithContentDescription("Ahorro de batería").assertDoesNotExist()
         val sort = compose.onNodeWithContentDescription(label(R.string.sort)).fetchSemanticsNode().boundsInRoot
         compose.onNodeWithContentDescription(label(R.string.search_toggle)).assertDoesNotExist()
-        val battery = compose.onNodeWithContentDescription("Ahorro de batería").fetchSemanticsNode().boundsInRoot
-        assertTrue(sort.top < battery.top)
+        val mcp = compose.onNodeWithContentDescription("Modo MCP").fetchSemanticsNode().boundsInRoot
+        assertTrue(sort.top < mcp.top)
         compose.onNodeWithContentDescription(label(R.string.equalizer)).performScrollTo().assertIsDisplayed()
     }
 

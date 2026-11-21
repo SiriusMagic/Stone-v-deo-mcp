@@ -90,13 +90,4 @@ class ApiModeScreenshotTest {
         compose.waitForIdle()
         compose.onNode(androidx.compose.ui.test.isDialog()).captureRoboImage("build/screenshots/stone-api-token-create.png")
     }
-
-    @Test fun audioLevels() {
-        compose.setContent { StoneTheme { Surface(color = StonePalette.Surface) {
-            Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp)) {
-                com.zirakusa.stone.nativeapp.feature.settings.AudioLevelSettings(null, null)
-            }
-        } } }
-        onView(isRoot()).captureRoboImage("build/screenshots/stone-audio-levels.png")
-    }
 }

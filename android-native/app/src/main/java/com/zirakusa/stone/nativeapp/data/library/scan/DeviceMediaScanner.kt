@@ -54,9 +54,12 @@ class DeviceMediaScanner(private val context: Context) {
             arrayOf(MediaStore.Video.Media.ARTIST, MediaStore.Video.Media.ALBUM, MediaStore.Video.Media.WIDTH,
                 MediaStore.Video.Media.HEIGHT) + rotationColumn())
 
-    /** MediaStore has the video rotation since Android 10; before that the size is used as stored. */
-    private fun rotationColumn(): Array<String> =
-        if (Build.VERSION.SDK_INT >= 29) arrayOf(MediaStore.Video.Media.ORIENTATION) else emptyArray()
+    /** MediaStore has the video rotation since Android 10 and its genre (Géneros tab) since Android 11. */
+    private fun rotationColumn(): Array<String> = when {
+        Build.VERSION.SDK_INT >= 30 -> arrayOf(MediaStore.Video.Media.ORIENTATION, MediaStore.MediaColumns.GENRE)
+        Build.VERSION.SDK_INT >= 29 -> arrayOf(MediaStore.Video.Media.ORIENTATION)
+        else -> emptyArray()
+    }
 
     private fun query(collection: Uri, selection: String, video: Boolean, extra: Array<String>): List<Song> {
         val projection = arrayOf(MediaStore.MediaColumns._ID, MediaStore.MediaColumns.TITLE,
@@ -70,12 +73,13 @@ class DeviceMediaScanner(private val context: Context) {
                     val uri = ContentUris.withAppendedId(collection, cursor.getLong(0))
                     val name = text(2).substringBeforeLast('.')
                     val folder = text(6).let { if (folderColumn() == FOLDER_LEGACY) it.substringBeforeLast('/').substringAfterLast('/') else it }
-                    // Videos: 9 width, 10 height, 11 rotation (Android 10+). Audio: 9 genre (Android 11+).
+                    // Videos: 9 width, 10 height, 11 rotation (Android 10+), 12 genre (11+). Audio: 9 genre (Android 11+).
                     val (width, height) = if (video) VideoKind.displaySize(cursor.getInt(9), cursor.getInt(10),
                         if (cursor.columnCount > 11) cursor.getInt(11) else 0) else 0 to 0
                     songs += Song(uri.toString(), text(1).ifBlank { name }, text(7), text(8),
                         folder, cursor.getLong(3), cursor.getLong(4), cursor.getLong(5) * 1000L, isVideo = video,
-                        genre = if (!video && cursor.columnCount > 9) text(9) else "", width = width, height = height)
+                        genre = when { !video && cursor.columnCount > 9 -> text(9); video && cursor.columnCount > 12 -> text(12); else -> "" },
+                        width = width, height = height)
                 }
             }
         }

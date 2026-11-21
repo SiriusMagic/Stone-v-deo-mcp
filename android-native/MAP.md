@@ -22,10 +22,10 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `StoneGuide.kt` (95) Discovery help for agents:
 - `StoneJobs.kt` (127) Background batches for agents.
 - `StoneLibraryEditActions.kt` (161) Bulk tools:
-- `StoneLookActions.kt` (100) Appearance and settings actions:
+- `StoneLookActions.kt` (95) Appearance and settings actions:
 - `StoneMediaActions.kt` (218) Queue, equalizer, video and library-view actions (added in 1.6.7).
 - `StoneMetadataActions.kt` (143) Tags, lyrics and covers of songs and videos:
-- `StoneSettingsActions.kt` (118) Favourites by id, playlist management, audio levels and the remaining Ajustes switches.
+- `StoneSettingsActions.kt` (100) Favourites by id, playlist management, audio levels and the remaining Ajustes switches.
 - `StoneSolutions.kt` (104) Dictionary of solutions for agents, like a skill they can look up:
 
 ## app/automation/activity
@@ -68,7 +68,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `NotificationScheduler.kt` (51) Ajustes › Notificaciones:
 
 ## app/data/library/scan
-- `DeviceMediaScanner.kt` (93) Runtime permission needed to read every song and video indexed by Android.
+- `DeviceMediaScanner.kt` (97) Runtime permission needed to read every song and video indexed by Android.
 - `FolderScanner.kt` (77) Uses Stone's selected SAF folder;
 - `ImportedLibraryStore.kt` (39) Legacy app-private media index kept so imports from older releases remain playable.
 - `LibraryCache.kt` (62) Disposable index only;
@@ -105,23 +105,20 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `PlaybackDataStore.kt` (52) Optional extracted cover used to rebuild system media artwork after restart.
 - `SecretBox.kt` (53) Encrypts API secrets (agent tokens, the relay key) before they are stored, with an AES-GCM key that lives in the Android Keystore and never leaves it.
 - `StoneDatabase.kt` (91) Versioned source of truth for user-created Stone data.
-- `StoneSettings.kt` (147) Last custom duration chosen in the sleep timer (minutes).
+- `StoneSettings.kt` (146) Last custom duration chosen in the sleep timer (minutes).
 
 ## app/feature/library
 - `LibraryOrdering.kt` (35)
-- `LibraryScreen.kt` (252)
+- `LibraryScreen.kt` (214)
 - `LibraryViewModel.kt` (188) Refreshes which songs have lyrics (background, cached per file).
 - `LibraryViewState.kt` (13) Library order shared by the sort sheet and automation (MCP mode), so both stay in sync.
-- `QuickActions.kt` (42) Single source of truth for home shortcuts.
+- `QuickActions.kt` (28) Single source of truth for home shortcuts.
 
 ## app/feature/library/components
-- `AlbumCard.kt` (58)
-- `ArtistCard.kt` (55)
-- `GenreCards.kt` (45) Card colours;
 - `HomeNavigationRail.kt` (74)
 - `LandscapeLibraryHeading.kt` (41)
 - `LayoutSelector.kt` (54) Compact / list / "Grande" switch, icons only;
-- `LibraryContent.kt` (228) Callbacks used by long-press selection in the library lists.
+- `LibraryContent.kt` (186) Callbacks used by long-press selection in the library lists.
 - `LibraryEmptyState.kt` (24)
 - `LibraryHeader.kt` (99)
 - `LibraryLayoutFrame.kt` (28) One content call site keeps the library alive when its surrounding layout changes.
@@ -129,7 +126,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `LibrarySelection.kt` (90) "N seleccionado" header with back and select-all, shown after a long press.
 - `LibrarySheets.kt` (61)
 - `LibrarySongRow.kt` (73)
-- `LibraryTabs.kt` (62) Stone Video puts video first:
+- `LibraryTabs.kt` (72) Stone Video:
 - `PlaylistCards.kt` (95) Icon and tint in front of a smart playlist title.
 - `PlaylistLibrary.kt` (119)
 - `RecentlyDeletedSheet.kt` (117) Trash:
@@ -137,7 +134,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/feature/library/video
 - `VideoGridCard.kt` (224) Round check used on selected cards.
-- `VideoLibraryContent.kt` (129)
+- `VideoLibraryContent.kt` (134)
 - `VideoLibraryLayout.kt` (16) Presentation used by the portrait video library.
 - `VideoSelection.kt` (60) Long-press selection for video grids/lists (Videos, Shorts, Movies).
 
@@ -154,7 +151,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `MiniPlayerOptionsPanel.kt` (65) Right-side options panel used only by the horizontal mini player.
 - `PlayerArtwork.kt` (57) Cover in the portrait player, in the shape chosen in Ajustes › Personalizado:
 - `PlayerProgress.kt` (72)
-- `PlayerScreen.kt` (269) Horizontal swipe changes tracks;
+- `PlayerScreen.kt` (267) Horizontal swipe changes tracks;
 - `SongTint.kt` (32) Colour taken from the current song's artwork, used by the queue and option sheets.
 
 ## app/feature/player/lyrics
@@ -168,12 +165,11 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `PlayerLyricChip.kt` (89) Compact lyric window under the player controls:
 
 ## app/feature/player/sheets
-- `PlayerSheetsHost.kt` (92) Shared by the full player and the home dock;
+- `PlayerSheetsHost.kt` (91) Shared by the full player and the home dock;
 - `PlayerSheetsState.kt` (37) Item whose shared options menu is open;
-- `PlayerToolsSheets.kt` (399) Song currently played as audio only;
+- `PlayerToolsSheets.kt` (398) Song currently played as audio only;
 - `QueueSheet.kt` (243) Outlined "LETRAS" label in front of the subtitle of songs that have lyrics.
 - `RecommendationsSheet.kt` (80) Songs to play after [current]:
-- `SleepTimerSheet.kt` (134) Preset durations offered in the sheet (0 = off).
 
 ## app/feature/player/tags
 - `AudioTagEditorSheet.kt` (157) "Editar etiquetas":
@@ -192,19 +188,17 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `VideoOptionsSheet.kt` (200) Video ⋮ menu.
 - `VideoPlayers.kt` (129) Controls stay visible;
 - `VideoPreferences.kt` (67) How the video is fitted inside its available bounds.
-- `VideoSidePanels.kt` (145) ⋮ menu of the landscape video:
+- `VideoSidePanels.kt` (144) ⋮ menu of the landscape video:
 - `VideoTimeline.kt` (142) A bounded, YouTube-like preview strip.
 
 ## app/feature/settings
-- `AudioLevelSettings.kt` (117) Ajustes › Niveles de audio:
 - `LegalScreens.kt` (60) Where "Calificarnos" sends people until Stone is on Google Play.
 - `LibraryScanSettings.kt` (63) Whole-device scanning (MediaStore + permission) and automatic rescans on open.
 - `NotificationSettings.kt` (111) Ajustes › Notificaciones, in one place:
 - `SettingsMiscDetails.kt` (75)
 - `SettingsParts.kt` (44)
-- `SettingsPlaybackDetails.kt` (190)
-- `SettingsScreens.kt` (252) Languages Stone ships complete translations for (names in their own language).
-- `SettingsShortcutsDetail.kt` (183) A tap moves once;
+- `SettingsScreens.kt` (229) Languages Stone ships complete translations for (names in their own language).
+- `SettingsShortcutsDetail.kt` (181) A tap moves once;
 - `SystemDiagnosticsDetail.kt` (229)
 - `TransitionSettings.kt` (41) Reproducción sin pausas and Crossfade switches;
 - `VideoControlSettings.kt` (83)
@@ -248,7 +242,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `PlaybackVolumeBoost.kt` (164) A percentage above 100 maps to a logarithmic gain;
 
 ## app/playback/control
-- `PlaybackViewModel.kt` (709) [gain] is a software attenuation applied on top of Android's volume.
+- `PlaybackViewModel.kt` (707) [gain] is a software attenuation applied on top of Android's volume.
 - `RequestedItemGuard.kt` (26) Keeps the song the user just tapped as the current one while the player loads the new list.
 - `StoneEcoEngine.kt` (132) Lightweight playback policy.
 - `SystemArtworkOverlay.kt` (108) Builds the artwork sent to Android's media controls without changing the artwork embedded in, or next to, the user's media file.
@@ -261,7 +255,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/ui
 - `AutomationBridge.kt` (161) Registers the running UI as the automation host (so agents use the same view models as the buttons) and shows the confirmation dialog for actions that
-- `StoneApp.kt` (455) Mini player button:
+- `StoneApp.kt` (450) Mini player button:
 
 ## app/ui/components
 - `SleepTimerIndicator.kt` (101) Shows the active sleep timer using the sun by day and the moon by night.

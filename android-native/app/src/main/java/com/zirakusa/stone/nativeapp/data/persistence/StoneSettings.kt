@@ -58,12 +58,11 @@ class StoneSettingsStore(context: Context) {
         sleepMinutes = db.setting("sleepMinutes", "0").toIntOrNull()?.coerceAtLeast(0) ?: 0,
         sleepFinishTrack = db.setting("sleepFinishTrack", "false").toBoolean(),
         sleepFadeOut = db.setting("sleepFadeOut", "true").toBoolean(),
-        audioMode = db.setting("audioMode", "balanced")
-            .takeIf { it in setOf("battery", "balanced", "hifi", "sleepy", "custom") } ?: "balanced",
+        // Stone Video always plays in Cine (volume 0–300 %); there is no audio-mode setting.
+        audioMode = "hifi",
         autoRescan = db.setting("autoRescan", "true").toBoolean(),
         deviceScan = db.setting("deviceScan", "true").toBoolean(),
-        hardwareAcceleration = db.setting("hardwareAcceleration", "automatic")
-            .takeIf { it in setOf("automatic", "disabled", "decoding", "full", "adaptive") } ?: "automatic",
+        hardwareAcceleration = "full",
         musicReminders = db.setting("musicReminders", "false").toBoolean(),
         landscapeLayoutMode = LandscapeLayoutMode.fromKey(db.setting("landscapeLayoutMode", "always")),
         videoScale = db.setting("videoScale", "auto")

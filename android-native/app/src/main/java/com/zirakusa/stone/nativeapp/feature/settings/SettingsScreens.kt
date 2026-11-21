@@ -87,14 +87,6 @@ private data class SettingsMenuSection(val title: Int, val items: List<SettingsM
                         SettingsMenuItem(Icons.Default.Delete, stringResource(R.string.recently_deleted), "",
                             "biblioteca papelera eliminados restaurar", { onClose(); onLibrarySheet("deleted") })
                     )),
-                    SettingsMenuSection(R.string.settings_section_audio, listOf(
-                        SettingsMenuItem(Icons.Default.Headphones, stringResource(R.string.settings_playback), "",
-                            "audio reproducción sonido modos salida altavoz bluetooth usb transiciones crossfade aceleración", { onPage("playback") }),
-                        SettingsMenuItem(Icons.Default.Equalizer, stringResource(R.string.audio_levels_title), "",
-                            "audio niveles ganancia volumen máximo dormilón cine balanceado altavoz sonido", { onPage("audio-levels") }),
-                        SettingsMenuItem(Icons.Default.Timer, stringResource(R.string.sleep_timer), "",
-                            "audio reproducción temporizador dormir", { onPage("sleep") })
-                    )),
                     SettingsMenuSection(R.string.settings_section_video, listOf(
                         SettingsMenuItem(Icons.Default.Movie, stringResource(R.string.video_settings), "",
                             "vídeo video inmersivo pantalla horizontal encuadre escala controles iconos", { onPage("video") })
@@ -167,17 +159,9 @@ private data class SettingsMenuSection(val title: Int, val items: List<SettingsM
                         LookSettings(store)
                     }
                     "notifications" -> NotificationSettings(store)
-                    "audio-levels" -> AudioLevelSettings(store, playback)
                     "api-mode" -> ApiModeSettings()
                     "widgets" -> WidgetSettings()
                     "immersive" -> ImmersiveSettingsDetail(immersiveEnabled, onImmersiveEnabledChange)
-                    "playback" -> {
-                        PlaybackDetail(store, playback, { onPage("audio-mode") },
-                            { onPage("hardware-acceleration") })
-                        Text(stringResource(R.string.settings_output_and_alerts), color = StonePalette.Yellow,
-                            fontWeight = FontWeight.Black, modifier = Modifier.padding(top = 18.dp, bottom = 6.dp))
-                        AudioOutputDetail()
-                    }
                     // Framing and the icon row live together in one Vídeo section.
                     "video", "video-controls" -> {
                         VideoSettingsDetail(videoScale, onVideoScaleChange)
@@ -185,12 +169,9 @@ private data class SettingsMenuSection(val title: Int, val items: List<SettingsM
                             fontWeight = FontWeight.Black, modifier = Modifier.padding(top = 22.dp, bottom = 6.dp))
                         VideoControlSettingsDetail(store, onVideoControlChange)
                     }
-                    "audio-mode" -> AudioModeDetail(playback)
-                    "hardware-acceleration" -> HardwareAccelerationDetail(playback)
                     "feedback" -> FeedbackDetail(shakeToReport, onShakeToReportChange)
                     "about" -> AboutDetail { onPage(it) }
                     "privacy", "terms", "licenses" -> LegalDocument(page)
-                    "sleep" -> SleepDetail(playback, onClose = { onPage(null) })
                     "system-diagnostics", "audio-diagnostics" -> SystemDiagnosticsDetail(playback)
                 }
             }
@@ -215,16 +196,12 @@ private val legalPages = setOf("privacy", "terms", "licenses")
     "shortcuts" -> R.string.settings_home_shortcuts
     "immersive" -> R.string.immersive_screen
     "library-scan" -> R.string.device_scan
-    "audio-levels" -> R.string.audio_levels_title
     "api-mode" -> R.string.api_title
     "widgets" -> R.string.widgets_title
-    "playback" -> R.string.settings_playback; "audio-mode" -> R.string.audio_mode
     "video", "video-controls" -> R.string.video_settings
-    "hardware-acceleration" -> R.string.hardware_acceleration
     "feedback" -> R.string.feedback_title; "about" -> R.string.about_stone
     "privacy" -> R.string.privacy_policy; "terms" -> R.string.terms_service
     "licenses" -> R.string.open_source_licenses
-    "sleep" -> R.string.sleep_timer
     "system-diagnostics", "audio-diagnostics" -> R.string.system_diagnostics; else -> R.string.settings
 })
 

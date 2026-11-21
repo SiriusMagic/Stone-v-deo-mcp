@@ -101,7 +101,6 @@ import com.zirakusa.stone.nativeapp.ui.system.VolumeOverlay
     var recommendationsOpen by rememberSaveable { mutableStateOf(false) }
     var audioOnlyId by rememberSaveable { mutableStateOf<String?>(null) }
     var lastVideoPreviewId by rememberSaveable { mutableStateOf(settingsStore.lastVideoPreviewId()) }
-    var artistDestination by rememberSaveable { mutableStateOf<String?>(null) }
     var lastRecordedId by rememberSaveable { mutableStateOf("") }
     LaunchedEffect(player.favorite, player.currentId) { library.syncFavorites() }
     LaunchedEffect(player.currentId, state.songs) {
@@ -236,10 +235,7 @@ import com.zirakusa.stone.nativeapp.ui.system.VolumeOverlay
             if (layout.fullPlayer) PlayerScreen(player, currentSong, playback,
                 { playerOpen = false }, library::delete, { library.refresh() },
                 state.playlists, library::createPlaylist, library::addToPlaylist, Modifier.weight(1f),
-                onArtist = {
-                    artistDestination = player.artist
-                    playerOpen = false
-                }, onRecommendations = { recommendationsOpen = true }, isPictureInPicture = isPictureInPicture, onAudioOnly = { song ->
+                onRecommendations = { recommendationsOpen = true }, isPictureInPicture = isPictureInPicture, onAudioOnly = { song ->
                     audioOnlyId = song.id
                     playback.play(song.copy(isVideo = false), state.songs)
                     playerOpen = true
@@ -284,8 +280,7 @@ import com.zirakusa.stone.nativeapp.ui.system.VolumeOverlay
                 settingsSheetVisible = settingsVisible, onSettingsSheetVisible = {
                     settingsVisible = it
                     if (!it) settingsPage = null
-                }, artistDestination = artistDestination,
-                onArtistDestinationConsumed = { artistDestination = null },
+                },
                 onDelete = library::delete,
                 layout = layout, landscapeLayoutMode = landscapeMode,
                 onLandscapeLayoutChange = {

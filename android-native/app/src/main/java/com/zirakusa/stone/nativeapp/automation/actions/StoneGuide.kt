@@ -21,7 +21,7 @@ internal object StoneGuide {
         "playlist" to "Playlists and their songs",
         "metadata" to "Tags, lyrics and covers of songs and videos (titles, artists, albums, external cover URLs)",
         "appearance" to "Theme, colours, sizes, home icon",
-        "audio" to "Volume ceiling and gain of each audio mode (Niveles de audio)",
+        "audio" to "Volume ceiling and gain (Stone Video is always Cine, 0–300 %)",
         "settings" to "Language, audio mode, gapless/crossfade, hardware acceleration and other switches",
         "stone" to "Help, tool search, solutions dictionary (stone_troubleshoot), recent errors (stone_activity), background jobs")
 

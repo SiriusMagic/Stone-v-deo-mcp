@@ -36,7 +36,7 @@ import com.zirakusa.stone.nativeapp.playback.diagnostics.AudioDiagnostics
 /** Sole owner of playback; the UI only connects with a MediaController. */
 class StonePlaybackService : MediaSessionService() {
     data class VolumeUiState(val percent: Int = 100, val revision: Long = 0,
-        val visible: Boolean = false, val maxPercent: Int = AudioMode.BALANCED.maxVolumePercent)
+        val visible: Boolean = false, val maxPercent: Int = AudioMode.HIFI.maxVolumePercent)
     data class AudioDiagnosticUiState(val loudnessEnhancerDisabled: Boolean = false, val revision: Long = 0)
     companion object {
         @Volatile var instance: StonePlaybackService? = null
@@ -44,12 +44,12 @@ class StonePlaybackService : MediaSessionService() {
         @Volatile var reportedAudioSessionId: Int = 0; private set
         @Volatile private var activePlayer: ExoPlayer? = null
         @Volatile private var volumePercent: Int = 100
-        @Volatile private var maxVolumePercent: Int = AudioMode.BALANCED.maxVolumePercent
+        @Volatile private var maxVolumePercent: Int = AudioMode.HIFI.maxVolumePercent
         /** Software gain of the current mode (Dormilón attenuates; others are 1). */
         @Volatile private var modeGain: Float = 1f
         val currentModeGain: Float get() = modeGain
         /** Mode in use, so the volume overlay shows the moon only for Dormilón. */
-        @Volatile var currentMode: AudioMode = AudioMode.BALANCED
+        @Volatile var currentMode: AudioMode = AudioMode.HIFI
             private set
         @Volatile private var lastAppliedNativeLevel: Int = -1
         @Volatile private var revision: Long = 0
@@ -397,7 +397,7 @@ class StonePlaybackService : MediaSessionService() {
         lastAppliedNativeLevel = initialNativeLevel
         volumePercent = volumeRange.levelToPercent(initialNativeLevel)
         ecoEngine = StoneEcoEngine(applicationContext).also {
-            it.apply(AudioMode.BALANCED, player)
+            it.apply(AudioMode.HIFI, player)
         }
         logAudio("service.eco-engine-applied", player = player)
         val saved = StoneSettingsStore(this).read()

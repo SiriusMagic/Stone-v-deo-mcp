@@ -49,22 +49,15 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
             onSetPlaylistCover, onRestorePlaylistCover)
         return
     }
-    val noGenre = stringResource(R.string.genre_unknown)
-    val groupKey: (Song) -> String = when (tab) {
-        LibraryTab.Artists -> { song -> song.artist }
-        LibraryTab.Albums -> { song -> song.album }
-        LibraryTab.Genres -> { song -> song.genre.trim().ifBlank { noGenre } }
-        else -> { _ -> "" }
-    }
-    val grouped = tab in listOf(LibraryTab.Artists, LibraryTab.Albums, LibraryTab.Genres)
     val mediaSongs = songs.filter(tab::accepts)
     if (tab.isVideo) {
         VideoLibraryContent(mediaSongs, state, currentId, modifier, onPlay, onFolder,
             compact, videoLibraryLayout, onVideoLibraryLayoutChange, onVideoOptions, onDelete, selectionActions.onTagsSaved,
-            startInFolders = tab == LibraryTab.Folders, shorts = tab == LibraryTab.Shorts)
+            startInFolders = tab == LibraryTab.Folders || tab == LibraryTab.Genres, shorts = tab == LibraryTab.Shorts,
+            byGenre = tab == LibraryTab.Genres)
         return
     }
-    val visible = if (collection != null) mediaSongs.filter { groupKey(it) == collection } else mediaSongs
+    val visible = mediaSongs
     val songLayout = VideoLibraryLayout.fromKey(StoneLook.songLayout)
     val dense = compact || songLayout == VideoLibraryLayout.COMPACT
     var managing by remember(collection) { mutableStateOf(false) }
@@ -78,7 +71,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     Column(modifier.fillMaxWidth()) {
     LazyColumn(Modifier.weight(1f).fillMaxWidth().testTag("library-list"), contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 24.dp)) {
         run {
-            if (!compact && tab == LibraryTab.Songs && collection == null) item {
+            if (!compact && tab == LibraryTab.Music && collection == null) item {
                 Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp),
                     verticalAlignment = Alignment.CenterVertically) {
                     Text(pluralStringResource(R.plurals.song_count, visible.size, visible.size), Modifier.weight(1f),
@@ -107,42 +100,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
                 if (searching) Text(stringResource(R.string.no_results), Modifier.padding(vertical = 32.dp), color = StonePalette.Muted)
                 else LibraryEmptyState(videos = tab.isVideo)
             }
-            if (tab == LibraryTab.Genres && collection == null && !managing) {
-                val genres = mediaSongs.groupBy(groupKey).toList().sortedBy { (name, _) -> if (name == noGenre) "\uFFFF" else name.lowercase() }
-                item {
-                    Text(pluralStringResource(R.plurals.genre_count, genres.size, genres.size),
-                        Modifier.padding(horizontal = 4.dp, vertical = 6.dp), color = StonePalette.SongSubtitle, fontSize = 15.sp)
-                }
-                items(genres.chunked(2), key = { it.first().first }) { pair ->
-                    Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                        pair.forEach { (name, tracks) -> GenreCard(name, tracks, Modifier.weight(1f)) { select(name) } }
-                        if (pair.size == 1) Spacer(Modifier.weight(1f))
-                    }
-                }
-            } else if (grouped && collection == null && !managing) {
-                items(mediaSongs.groupBy(groupKey).toList(), key = { it.first }) { (name, tracks) ->
-                    if (tab == LibraryTab.Albums) {
-                        AlbumCard(name, tracks) { select(name) }
-                    } else if (tab == LibraryTab.Artists) {
-                        ArtistCard(name, tracks) { select(name) }
-                    } else {
-                    val glyph = when (tab) {
-                        LibraryTab.Artists -> StoneGlyph.Person
-                        LibraryTab.Albums -> StoneGlyph.Album
-                        else -> StoneGlyph.Folder
-                    }
-                    Row(Modifier.fillMaxWidth().clickable { select(name) }.padding(vertical = 12.dp),
-                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-                        LibraryCover(glyph = glyph, compact = compact)
-                        Column(Modifier.weight(1f)) {
-                            Text(name, fontSize = 16.sp)
-                            Text(pluralStringResource(R.plurals.song_count, tracks.size, tracks.size), color = StonePalette.SongSubtitle, fontSize = 13.sp)
-                        }
-                        StoneIcon(StoneGlyph.Forward, color = StonePalette.Muted)
-                    }
-                    }
-                }
-            } else if (songLayout == VideoLibraryLayout.GRID && !compact) {
+            if (songLayout == VideoLibraryLayout.GRID && !compact) {
                 // "Grande": two big covers per row.
                 items(visible.chunked(2), key = { it.first().id }) { pair ->
                     Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {

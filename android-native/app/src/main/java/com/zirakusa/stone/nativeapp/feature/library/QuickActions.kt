@@ -13,28 +13,14 @@ object QuickActionRegistry {
     val pinnedIds = listOf("sort")
 
     /** Actions that have a real destination or operation in the current app. */
-    private val available = setOf(
-        "audio_mode_battery", "audio_mode_balanced", "audio_mode_hifi", "audio_mode_sleepy", "diagnostics",
-        "sleep_timer", "api_mode"
-    )
+    private val available = setOf("diagnostics", "api_mode")
 
-    /** Default playback shortcuts; "sort" is added by LibraryScreen. */
-    val preferredIds = listOf(
-        "audio_mode_battery", "audio_mode_balanced", "audio_mode_hifi", "audio_mode_sleepy"
-    )
+    /** Stone Video plays always in Cine (0–300 %): no audio-mode shortcuts. "sort" is added by LibraryScreen. */
+    val preferredIds = emptyList<String>()
     val defaultVisibleIds = preferredIds.toSet()
 
     val definitions = listOf(
-        QuickActionDefinition("audio_mode_battery", "Ahorro de batería",
-            "Menor consumo y efectos reducidos", Icons.Default.BatteryFull, true),
-        QuickActionDefinition("audio_mode_balanced", "Balanceado",
-            "Ruta automática y equilibrio de calidad", Icons.Default.Balance, true),
-        QuickActionDefinition("audio_mode_hifi", "Cine",
-            "Calidad prioritaria y aceleración completa", Icons.Default.GraphicEq, true),
-        QuickActionDefinition("audio_mode_sleepy", "Dormilón",
-            "Volumen máximo al 10 % para dormir", Icons.Default.Bedtime, true),
         QuickActionDefinition("diagnostics", "Diagnóstico de rendimiento", "CPU, RAM y audio", Icons.Default.Memory, true),
-        QuickActionDefinition("sleep_timer", "Temporizador", "Pausa la música al dormir", Icons.Default.Timer, true),
         QuickActionDefinition("api_mode", "Modo MCP", "Conecta un asistente de IA", Icons.Default.Hub, true),
     )
     val operational = definitions.filter { it.available && it.id in available }

@@ -74,9 +74,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.label
                 val enabled = when (id) {
                     "minimal" -> QuickActionRegistry.pinnedIds.toSet()
                     "basic" -> QuickActionRegistry.pinnedIds.toSet()
-                    "audiophile" -> QuickActionRegistry.pinnedIds.toSet() + setOf(
-                        "audio_mode_battery", "audio_mode_balanced", "audio_mode_hifi",
-                        "audio_mode_sleepy", "diagnostics")
+                    "audiophile" -> QuickActionRegistry.pinnedIds.toSet() + setOf("diagnostics")
                     "custom" -> items.filter { item ->
                         store?.customShortcutVisible(item.id, visible[item.id] == true)
                             ?: (visible[item.id] == true)

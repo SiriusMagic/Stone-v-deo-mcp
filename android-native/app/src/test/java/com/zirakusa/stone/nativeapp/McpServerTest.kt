@@ -342,7 +342,7 @@ class McpServerTest {
             val names = rpc("tools/list").getJSONObject("result").getJSONArray("tools")
                 .let { tools -> (0 until tools.length()).map { tools.getJSONObject(it).getString("name") } }
             assertFalse("library_set_favorite" in names)
-            assertTrue(names.containsAll(listOf("audio_set_level", "settings_set_transitions", "playlist_rename")))
+            assertTrue(names.containsAll(listOf("audio_get_levels", "settings_set_transitions", "playlist_rename")))
             assertTrue(call("library_set_favorite", JSONObject().put("songIds", songs[1].id).put("favorite", false)).getBoolean("isError"))
             assertEquals(setOf(songs[1].id), liked)
         } finally { McpServer.updateTokens(listOf(main)) }

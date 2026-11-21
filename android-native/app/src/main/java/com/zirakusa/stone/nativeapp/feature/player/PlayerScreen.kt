@@ -65,7 +65,7 @@ import com.zirakusa.stone.nativeapp.feature.player.video.rememberPlaybackControl
     back: () -> Unit, onDelete: (Song) -> Unit,
     onMetadataChanged: () -> Unit, playlists: List<StonePlaylist>,
     onCreatePlaylist: (String) -> Unit, onAddToPlaylist: (String, Song) -> Unit,
-    modifier: Modifier = Modifier, onArtist: () -> Unit = {}, onRecommendations: () -> Unit = {},
+    modifier: Modifier = Modifier, onRecommendations: () -> Unit = {},
     isPictureInPicture: Boolean = false,
     onAudioOnly: (Song) -> Unit = {},
     sheets: PlayerSheetsState = rememberPlayerSheetsState(),
@@ -145,8 +145,7 @@ import com.zirakusa.stone.nativeapp.feature.player.video.rememberPlaybackControl
                 Text(state.artist.uppercase(), fontWeight = FontWeight.Bold, maxLines = 1,
                     overflow = TextOverflow.Ellipsis, fontSize = 14.sp)
                 if (state.sleepMinutes > 0) SleepTimerIndicator(state.sleepMinutes,
-                    Modifier.height(30.dp), endAtMillis = state.sleepEndAtMs,
-                    onClick = { sheets.tool = PlayerTool.Sleep })
+                    Modifier.height(30.dp), endAtMillis = state.sleepEndAtMs)
             }
         }
         if (song?.isVideo == true) Box(Modifier.weight(1f).fillMaxWidth()) {
@@ -168,8 +167,7 @@ import com.zirakusa.stone.nativeapp.feature.player.video.rememberPlaybackControl
                 Text(state.title, fontSize = 25.sp, fontWeight = FontWeight.Black, maxLines = 1,
                     overflow = TextOverflow.Ellipsis, color = PlayerCream)
                 Text(state.artist, color = Color(0xFF8A848F), fontSize = 15.sp,
-                    modifier = Modifier.padding(top = 5.dp).clickable(
-                        enabled = state.artist.isNotBlank(), onClick = onArtist), maxLines = 1)
+                    modifier = Modifier.padding(top = 5.dp), maxLines = 1)
             }
             IconToggleButton(state.favorite, { playback.toggleFavorite() }) {
                 Icon(if (state.favorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,

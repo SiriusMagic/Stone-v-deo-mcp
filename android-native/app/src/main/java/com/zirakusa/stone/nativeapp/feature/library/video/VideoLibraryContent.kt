@@ -37,11 +37,14 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     compact: Boolean, videoLibraryLayout: VideoLibraryLayout,
     onVideoLibraryLayoutChange: (VideoLibraryLayout) -> Unit,
     onVideoOptions: (Song) -> Unit, onDelete: (Song) -> Unit, onTagsSaved: () -> Unit,
-    startInFolders: Boolean = false, shorts: Boolean = false) {
+    startInFolders: Boolean = false, shorts: Boolean = false, byGenre: Boolean = false) {
+    // Carpetas groups by folder; Géneros by the video's genre tag (terror, romance…), untagged ones together.
+    val noGenre = stringResource(R.string.genre_unknown)
+    val groupOf: (Song) -> String = if (byGenre) { song -> song.genre.trim().ifBlank { noGenre } } else { song -> song.folder }
     val selection = remember { VideoSelectionState() }
     var folderBrowser by rememberSaveable { mutableStateOf(startInFolders) }
     var selectedFolder by rememberSaveable { mutableStateOf<String?>(null) }
-    val visible = selectedFolder?.let { folder -> videos.filter { it.folder == folder } } ?: videos
+    val visible = selectedFolder?.let { folder -> videos.filter { groupOf(it) == folder } } ?: videos
     // Shorts are vertical: always a two-column grid of tall cards.
     val effectiveLayout = if (compact || shorts) VideoLibraryLayout.GRID else videoLibraryLayout
     VideoSelectionDialogs(selection, visible, onDelete, onTagsSaved)
@@ -72,10 +75,12 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
         }
         when {
             folderBrowser -> LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 18.dp)) {
-                items(videos.groupBy { it.folder }.toList(), key = { it.first }) { (folder, items) ->
+                items(videos.groupBy(groupOf).toList().sortedBy { (name, _) -> if (name == noGenre) "\uFFFF" else name.lowercase() },
+                    key = { it.first }) { (folder, items) ->
                     Row(Modifier.fillMaxWidth().clickable { selectedFolder = folder; folderBrowser = false }
                         .padding(vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Folder, null, tint = StonePalette.Yellow, modifier = Modifier.size(30.dp))
+                        Icon(if (byGenre) Icons.Default.TheaterComedy else Icons.Default.Folder, null, tint = StonePalette.Yellow,
+                            modifier = Modifier.size(30.dp))
                         Column(Modifier.weight(1f).padding(horizontal = 14.dp)) {
                             Text(folder, fontWeight = FontWeight.SemiBold)
                             Text(pluralStringResource(R.plurals.video_count, items.size, items.size), color = StonePalette.SongSubtitle,

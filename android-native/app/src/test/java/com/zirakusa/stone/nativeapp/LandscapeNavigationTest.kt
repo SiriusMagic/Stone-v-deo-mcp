@@ -38,7 +38,7 @@ class LandscapeNavigationTest {
                         false, LandscapeLayoutMode.ALWAYS))
             } }
         }
-        compose.onNodeWithText(label(R.string.songs)).performScrollTo().performClick()
+        compose.onNodeWithText(label(R.string.tab_music)).performScrollTo().performClick()
         compose.onNodeWithContentDescription(label(R.string.search)).performTextInput("Song")
         compose.onNodeWithTag("library-list").performScrollToIndex(20)
         compose.onNodeWithText("Song 21").assertIsDisplayed()
@@ -50,12 +50,10 @@ class LandscapeNavigationTest {
         compose.runOnIdle { showingLibrary.value = true }
         compose.onNodeWithText("Song 21").assertIsDisplayed()
         compose.onNodeWithContentDescription(label(R.string.search)).assertTextContains("Song")
-        compose.onNodeWithText(label(R.string.albums)).performScrollTo().performClick()
-        compose.onNodeWithText("Album").performClick()
+        compose.onNodeWithText(label(R.string.genres)).performScrollTo().performClick()
         compose.runOnIdle { showingLibrary.value = false }
         compose.runOnIdle { landscape.value = false; showingLibrary.value = true }
-        compose.onNodeWithText(label(R.string.albums)).assertIsSelected()
-        compose.onNodeWithText("Album").assertIsDisplayed()
+        compose.onNodeWithText(label(R.string.genres)).assertIsSelected()
         assertEquals(0, playbackCommands)
     }
 

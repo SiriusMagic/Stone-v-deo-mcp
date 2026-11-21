@@ -100,7 +100,7 @@ data class PlaybackState(val ready: Boolean = false, val title: String = "", val
     val sleepFinishTrack: Boolean = false, val sleepFadeOut: Boolean = true,
     /** Last duration set through "Tiempo personalizado", to prefill the picker. */
     val sleepCustomMinutes: Int = 30, val volumePercent: Int = 100,
-    val audioMode: AudioMode = AudioMode.BALANCED,
+    val audioMode: AudioMode = AudioMode.HIFI,
     val hardwareAcceleration: HardwareAcceleration = HardwareAcceleration.AUTOMATIC)
 
 class PlaybackViewModel(application: Application) : AndroidViewModel(application) {
@@ -127,11 +127,9 @@ class PlaybackViewModel(application: Application) : AndroidViewModel(application
     private var equalizerByGenre = data.boolean("equalizer-by-genre", false)
     private var genreJob: kotlinx.coroutines.Job? = null
     private var volumePercent = 100
-    private var audioMode = runCatching { AudioMode.valueOf(settings.read().audioMode.uppercase()) }
-        .getOrDefault(AudioMode.BALANCED)
-    private var hardwareAcceleration = runCatching {
-        HardwareAcceleration.valueOf(settings.read().hardwareAcceleration.uppercase())
-    }.getOrDefault(HardwareAcceleration.AUTOMATIC)
+    /** Stone Video: always Cine (volume 0–300 %) with full hardware acceleration, as Stone's Cine shortcut. */
+    private var audioMode = AudioMode.HIFI
+    private var hardwareAcceleration = HardwareAcceleration.FULL
     private var sleepMinutes = 0
     private var sleepEndAtMs = 0L
     private var sleepFinishTrack = settings.read().sleepFinishTrack

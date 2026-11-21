@@ -25,7 +25,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.label
         Column(Modifier.weight(1f)) {
             Text(stringResource(tab.label), fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.titleLarge, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            if (tab == LibraryTab.Songs) Text(pluralStringResource(R.plurals.song_count, songCount, songCount),
+            if (tab == LibraryTab.Music) Text(pluralStringResource(R.plurals.song_count, songCount, songCount),
                 color = StonePalette.Muted, style = MaterialTheme.typography.bodySmall)
         }
         if (!tab.isVideo) {

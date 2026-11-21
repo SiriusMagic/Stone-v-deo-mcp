@@ -8,7 +8,6 @@
     <string name="stone">Stone</string>
     <string name="choose_folder">Ordner hinzufügen</string>
     <string name="search">Songs, Künstler, Alben suchen…</string>
-    <string name="songs">Songs</string>
     <string name="folders">Ordner</string>
     <string name="artists">Künstler</string>
     <string name="albums">Alben</string>
@@ -81,7 +80,6 @@
     <string name="share">Teilen</string>
     <string name="speed">Geschwindigkeit</string>
     <string name="set_ringtone">Als Klingelton festlegen</string>
-    <string name="sleep_timer">Sleep-Timer</string>
     <string name="sleep_timer_active">Timer aktiv</string>
         <string name="floating_window">Schwebendes Fenster</string>
     <string name="delete">Löschen</string>
@@ -92,15 +90,6 @@
     <plurals name="delete_selected_message"><item quantity="one">%1$d ausgewählten Song löschen?</item><item quantity="other">%1$d ausgewählte Songs löschen?</item></plurals>
     <string name="video_scale">Skalierung anpassen</string>
     <string name="default_value">Standard</string>
-    <string name="off">Aus</string>
-    <plurals name="minutes_later"><item quantity="one">In %1$d Minute</item><item quantity="other">In %1$d Minuten</item></plurals>
-    <string name="finish_current_track">Letzten Song zu Ende spielen</string>
-    <string name="custom_sleep_time">Eigene Zeit</string>
-    <string name="hours">Std.</string>
-    <string name="minutes_short">Min</string>
-    <string name="set_sleep_timer">Timer stellen</string>
-    <string name="custom">Eigene</string>
-    <string name="set_custom">Festlegen</string>
     <string name="artist">Künstler</string>
     <string name="album">Album</string>
     <string name="genre">Genre</string>
@@ -151,19 +140,6 @@
     <string name="video_media">Video</string>
     <string name="no_videos">Noch keine Videos</string>
     <string name="choose_video_folder">Videoordner wählen</string>
-    <string name="hardware_acceleration">Hardwarebeschleunigung</string>
-    <string name="hardware_acceleration_intro">Die Verfügbarkeit hängt vom Gerät, der Audioausgabe und dem Format ab.</string>
-    <string name="accel_automatic">Automatisch</string>
-    <string name="accel_disabled">Deaktiviert</string>
-    <string name="accel_decoding">Dekodierbeschleunigung</string>
-    <string name="accel_full">Volle Beschleunigung</string>
-    <string name="accel_adaptive">Ultra-Akkusparen</string>
-    <string name="accel_automatic_info">Android wählt den kompatiblen Weg.</string>
-    <string name="accel_disabled_info">Fordert keine zusätzliche Beschleunigung an.</string>
-    <string name="accel_decoding_info">Bevorzugt Hardware-Dekodierung, wenn verfügbar.</string>
-    <string name="accel_full_info">Bevorzugt Audio-Offload, wenn die Hardware kompatibel ist.</string>
-    <string name="accel_adaptive_info">Minimiert die Dauerlast: gibt die CPU frei, wenn die Audioausgabe es erlaubt, und behält einen sicheren Fallback.</string>
-    <string name="hardware_acceleration_note">Dekodierbeschleunigung und Audio-Offload sind nicht dasselbe. Android kann einen herkömmlichen Weg als Fallback nutzen.</string>
     <string name="settings_theme">Design</string>
     <string name="immersive_screen">Immersiver Bildschirm</string>
     <string name="immersive_screen_hint">Blendet die Systemleisten in der ganzen App aus: Start, Mediathek, Player, Videos, Playlists und Einstellungen. Android kann sie per Geste kurz einblenden.</string>
@@ -188,8 +164,6 @@
     <string name="settings_section_system">System</string>
     <string name="settings_section_appearance">Personalisierung</string>
     <string name="settings_section_about">Hilfe und Info zu Stone</string>
-    <string name="playback_section_mode">Modus und Qualität</string>
-    <string name="playback_section_behavior">Verhalten</string>
     <string name="audio_mode">Wiedergabemodus</string>
     <string name="system_diagnostics">Erweiterte Systemdiagnose</string>
     <string name="system_diagnostics_hint">Status von Stone, Speicher, CPU, Audio, Akku und Temperatur bei Bedarf.</string>
@@ -240,14 +214,9 @@
     <string name="stone_consumption_hint">Nur Messwerte des Stone-Prozesses; sie zeigen nicht den Gesamtverbrauch des Telefons.</string>
     <string name="diagnostics_limitations">Physische Latenz, der genaue Verbrauch in mAh und einige Geräteeigenschaften sind über die allgemeinen Android-APIs nicht verfügbar. Sie werden nicht als echte Messungen dargestellt.</string>
     <string name="export_diagnostics">JSON-Bericht teilen</string>
-    <string name="audio_mode_intro">Wähle, wie du deine Musik hören möchtest.</string>
     <string name="audio_mode_battery">Akkusparen</string>
     <string name="audio_mode_balanced">Ausgewogen</string>
     <string name="audio_mode_hifi">Kino</string>
-    <string name="audio_mode_battery_info">Reduziert die Prozessorlast und pausiert Audioeffekte, solange dieser Modus aktiv ist, um die Akkulaufzeit zu verlängern.</string>
-    <string name="audio_mode_balanced_info">Ausgewogen zwischen Verbrauch, Stabilität und Qualität.</string>
-    <string name="audio_mode_hifi_info">Qualität zuerst und volle Beschleunigung, wenn das Gerät es erlaubt.</string>
-    <string name="quick_action_activated">%1$s aktiviert</string>
     <string name="quick_action_confirmed">Verknüpfung ausgeführt: %1$s</string>
     <string name="about_stone">Über Stone</string>
     <string name="feedback_title">Feedback und Vorschläge</string>
@@ -292,16 +261,11 @@
     <string name="theme_midnight">Mitternacht</string>
     <string name="theme_amoled">AMOLED (reines Schwarz, spart Akku)</string>
     <string name="theme_light">Hell</string>
-    <string name="play_with_others">Zusammen mit anderen Apps abspielen</string>
-    <string name="play_with_others_hint">Erlaubt, den Ton von Stone mit anderen Apps zu mischen.</string>
     <string name="gapless">Lückenlose Wiedergabe</string>
     <string name="gapless_hint">Fügt Songs ohne Stille aneinander und überspringt die Stille am Anfang und Ende jeder Datei.</string>
     <string name="crossfade">Überblenden</string>
     <string name="crossfade_hint">Senkt die Lautstärke am Ende jedes Songs und hebt sie beim nächsten wieder an.</string>
     <string name="notify_new_files">Benachrichtigung über neue Dateien</string>
-    <string name="audio_output_intro">Sieh nach, welche Ausgabe Android gerade nutzt. Die erweiterte Auswahl hängt vom System und vom verbundenen Gerät ab.</string>
-    <string name="audio_output_current">Aktuelle Ausgabe</string>
-    <string name="audio_output_open_settings">Toneinstellungen des Systems öffnen</string>
     <string name="settings_home_shortcuts">Startsymbole</string>
     <string name="home_shortcut_hint">Wähle, welche Verknüpfungen in der Hauptleiste erscheinen.</string>
     <string name="restore_defaults">Standardeinstellungen wiederherstellen</string>
@@ -339,7 +303,6 @@
     <string name="tags_saved_in_file">Tags in der Originaldatei gespeichert.</string>
     <string name="tags_format_unsupported">Dieses Format unterstützt noch keine Tag-Bearbeitung (unterstützt: MP3, FLAC, M4A).</string>
     <string name="audio_mode_sleepy">Schlafmütze</string>
-    <string name="audio_mode_sleepy_info" formatted="false">Zum Hören im Bett, ohne zu stören: Die Höchstlautstärke bleibt bei 10&#160;% und selbst die niedrigste Stufe klingt sanft. Spart Akku.</string>
     <string name="video_rotate">Bildschirm drehen</string>
     <string name="video_rewind_10">10 s zurück</string>
     <string name="video_forward_10">10 s vor</string>
@@ -402,11 +365,6 @@
     <string name="custom_shortcut_unsupported">Dein Launcher unterstützt keine angehefteten Verknüpfungen.</string>
     <string name="custom_reset">Gestaltung zurücksetzen</string>
     <string name="audio_mode_custom">Eigene</string>
-    <string name="audio_mode_custom_info">Deine eigene Höchstlautstärke und Verstärkung (Einstellungen › Audiopegel).</string>
-    <string name="audio_levels_title">Audiopegel</string>
-    <string name="audio_levels_intro">Stelle Höchstlautstärke und Verstärkung jedes Modus ein. Die Verstärkung senkt oder hebt den Ton über die Android-Lautstärke hinaus.</string>
-    <string name="audio_levels_battery" formatted="false">Akkusparen nutzt immer 100 % von Android, ohne Effekte.</string>
-    <string name="audio_levels_reset">Pegel zurücksetzen</string>
     <string name="layout_compact_action">Zur kompakten Liste</string>
     <string name="theme_ocean">Ozean</string>
     <string name="theme_forest">Wald</string>
@@ -431,10 +389,6 @@
     <string name="custom_launcher_icon">Maskottchen und Startsymbol</string>
     <string name="custom_launcher_icon_hint">Das gewählte Maskottchen erscheint in Stone und als Symbol auf dem Startbildschirm. Manche Launcher brauchen ein paar Sekunden zum Aktualisieren.</string>
         <string name="sleep_timer_remaining">Noch %1$s · bis %2$s</string>
-    <string name="sleep_add_minutes">+%1$d min</string>
-    <string name="sleep_fade_out">Lautstärke am Ende langsam senken</string>
-    <string name="sleep_fade_out_hint">In der letzten halben Minute wird der Ton sanft ausgeblendet.</string>
-    <string name="sleep_end_of_track">Wenn dieser Song endet</string>
     <string name="crossfade_seconds">%1$d s</string>
     <string name="mascot_penguin">Pinguin</string>
     <string name="mascot_panda">Panda</string>
@@ -519,7 +473,6 @@
     <string name="artwork_fullscreen_hint">Das Cover füllt den ganzen Player hinter den Steuerelementen</string>
     <string name="genres">Genres</string>
     <string name="genre_unknown">Ohne Genre</string>
-    <plurals name="genre_count"><item quantity="one">%1$d Genre</item><item quantity="other">%1$d Genres</item></plurals>
     <string name="custom_font_style">Schriftstil</string>
     <string name="custom_font_roman">Normal</string>
     <string name="custom_font_italic">Kursiv</string>
@@ -536,7 +489,6 @@
     <string name="lyrics_file_saved">Songtext auch in der Datei gespeichert: Er wird beim Teilen mitgeschickt.</string>
     <string name="lyrics_file_failed">Songtext in Stone gespeichert, aber nicht in der Datei: %1$s</string>
     <string name="lyrics_file_unsupported">Songtext in Stone gespeichert. Dieses Format kann keinen Songtext in der Datei speichern (MP3, FLAC und M4A schon).</string>
-    <string name="settings_section_audio">Audio</string>
     <string name="settings_section_video">Video</string>
     <string name="settings_section_notifications">Benachrichtigungen</string>
     <string name="personalization_title">Themen und Anpassung</string>
@@ -551,17 +503,6 @@
     <string name="reminder_title">Zeit für deine Musik</string>
     <string name="reminder_text">Tippen, um Stone zu öffnen und weiterzuhören.</string>
     <string name="notify_inexact">Android kann geplante Hinweise zum Akkusparen um einige Minuten verschieben.</string>
-    <string name="settings_output_and_alerts">Audioausgabe</string>
-    <string name="audio_levels_pick">Wähle einen Modus, um seinen Klang anzupassen.</string>
-    <string name="audio_levels_sleepy_hint">Sanfter Klang</string>
-    <string name="audio_levels_balanced_hint">Für jeden Tag</string>
-    <string name="audio_levels_hifi_hint">Mehr Intensität</string>
-    <string name="audio_levels_custom_hint">Nach deinem Geschmack</string>
-    <string name="audio_levels_active">Aktiv</string>
-    <string name="audio_levels_independent">Eigene Einstellungen dieses Modus</string>
-    <string name="audio_levels_max">Maximale Lautstärke</string>
-    <string name="audio_levels_gain">Verstärkung</string>
-    <string name="audio_levels_saved">Änderungen werden in diesem Modus gespeichert.</string>
     <string name="tags_auto_title">Automatisch ausfüllen</string>
     <string name="tags_auto_searching">Song wird gesucht…</string>
     <string name="tags_auto_none">Song nicht gefunden.</string>
@@ -632,4 +573,5 @@
     <string name="api_token_link_label_hub">Token (Link für den Hub)</string>
     <string name="tab_shorts">Shorts</string>
     <string name="tab_music_videos">Musikvideos</string>
+    <string name="tab_music">Musik</string>
 </resources>

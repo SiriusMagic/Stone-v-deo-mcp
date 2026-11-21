@@ -1,6 +1,5 @@
 package com.zirakusa.stone.nativeapp.automation.actions
 
-import com.zirakusa.stone.nativeapp.playback.control.AudioMode
 import com.zirakusa.stone.nativeapp.ui.theme.LauncherIcon
 import com.zirakusa.stone.nativeapp.ui.theme.StoneAccent
 import com.zirakusa.stone.nativeapp.ui.theme.StoneInk
@@ -66,10 +65,6 @@ internal object StoneLookActions {
         StoneAction("settings.set_language", "Change the app language.", ActionRisk.REVERSIBLE,
             listOf(ActionParam("language", "string", "Language code.", true, SUPPORTED_LANGUAGES))) { args ->
             host().setLanguage(args.getString("language")); ok("Language changed")
-        },
-        StoneAction("settings.set_audio_mode", "Change the audio mode (battery, balanced, hifi = Cine, sleepy = Dormilón, custom).",
-            ActionRisk.REVERSIBLE, listOf(ActionParam("mode", "string", "Mode key.", true, AudioMode.entries.map { it.key }))) { args ->
-            host().setAudioMode(AudioMode.entries.first { it.key == args.getString("mode") }); ok("Audio mode changed")
         },
     )
 

@@ -50,7 +50,7 @@ private val PanelColor = Color(0xF0232328)
         .windowInsetsPadding(WindowInsets.displayCutout).padding(vertical = 12.dp), content = content)
 }
 
-/** ⋮ menu of the landscape video: timer, night mode, brightness, volume, equalizer, audio, properties, share. */
+/** ⋮ menu of the landscape video: night mode, brightness, volume, equalizer, audio, properties, share. */
 @Composable internal fun VideoMenuPanel(song: Song, state: PlaybackState, playback: PlaybackViewModel, night: Boolean,
     onNight: (Boolean) -> Unit, onTool: (PlayerTool) -> Unit, onAudioOnly: () -> Unit, onClose: () -> Unit) {
     val context = LocalContext.current
@@ -58,7 +58,6 @@ private val PanelColor = Color(0xF0232328)
     var properties by remember { mutableStateOf(false) }
     Panel {
         Column(Modifier.verticalScroll(rememberScrollState())) {
-            MenuRow(Icons.Default.Timer, R.string.sleep_timer) { onTool(PlayerTool.Sleep) }
             MenuRow(Icons.Default.Bedtime, R.string.video_night_mode, trailing = if (night) "ON" else "OFF") { onNight(!night) }
             MenuRow(Icons.Default.LightMode, R.string.video_brightness) { expanded = if (expanded == "light") null else "light" }
             if (expanded == "light") {

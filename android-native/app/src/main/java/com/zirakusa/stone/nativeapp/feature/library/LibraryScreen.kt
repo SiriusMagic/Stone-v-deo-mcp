@@ -29,8 +29,6 @@ import com.zirakusa.stone.nativeapp.feature.settings.feedback.*
 import com.zirakusa.stone.nativeapp.feature.settings.look.*
 import com.zirakusa.stone.nativeapp.data.persistence.StoneSettingsStore
 import com.zirakusa.stone.nativeapp.playback.control.PlaybackViewModel
-import com.zirakusa.stone.nativeapp.playback.control.AudioMode
-import com.zirakusa.stone.nativeapp.playback.control.HardwareAcceleration
 import com.zirakusa.stone.nativeapp.feature.player.video.VideoScale
 import com.zirakusa.stone.nativeapp.ui.theme.StonePalette
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -59,7 +57,6 @@ private val legacyDefinitions = listOf(
     settingsPage: String? = null, onSettingsPage: (String?) -> Unit = {},
     playbackViewModel: PlaybackViewModel? = null, onOpenSettings: () -> Unit = {},
     settingsSheetVisible: Boolean = false, onSettingsSheetVisible: (Boolean) -> Unit = {},
-    artistDestination: String? = null, onArtistDestinationConsumed: () -> Unit = {},
     onDelete: (Song) -> Unit = {}, onAudioOnly: (Song) -> Unit = {},
     onVideoOptions: (Song) -> Unit = {},
     layout: HomeLayout = HomeLayout(false),
@@ -106,25 +103,9 @@ private val legacyDefinitions = listOf(
         } else ordered
         profileOrdered.mapNotNull { id -> definitions.find { it.id == id }?.takeIf { shortcuts[id] == true } }
     }
-    LaunchedEffect(artistDestination) {
-        artistDestination?.takeIf { it.isNotBlank() }?.let { artist ->
-            tab = LibraryTab.Artists
-            collection = artist
-            onArtistDestinationConsumed()
-        }
-    }
     val playbackState = playbackViewModel?.state?.collectAsStateWithLifecycle()?.value
     val activeQuickActionIds = setOfNotNull(
-        when (playbackState?.audioMode) {
-            AudioMode.BATTERY -> "audio_mode_battery"
-            AudioMode.BALANCED -> "audio_mode_balanced"
-            AudioMode.HIFI -> "audio_mode_hifi"
-            AudioMode.SLEEPY -> "audio_mode_sleepy"
-            AudioMode.CUSTOM, null -> null
-        },
-        "equalizer".takeIf { playbackState?.equalizerEnabled == true },
-        "sleep_timer".takeIf { (playbackState?.sleepEndAtMs ?: 0L) > 0L }
-    )
+        "equalizer".takeIf { playbackState?.equalizerEnabled == true })
     LaunchedEffect(feedbackQuickActionId) {
         val id = feedbackQuickActionId ?: return@LaunchedEffect
         delay(900)
@@ -135,13 +116,7 @@ private val legacyDefinitions = listOf(
     fun showQuickActionConfirmation(id: String) {
         val label = (legacyDefinitions + QuickActionRegistry.definitions)
             .firstOrNull { it.id == id }?.label ?: id
-        val modeAction = id.startsWith("audio_mode_")
-        val message = if (modeAction) {
-            stoneResources.getString(R.string.quick_action_activated, label)
-        } else {
-            stoneResources.getString(R.string.quick_action_confirmed, label)
-        }
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, stoneResources.getString(R.string.quick_action_confirmed, label), Toast.LENGTH_SHORT).show()
     }
     val dispatchQuickAction: (String) -> Unit = { id ->
         // Every shortcut gets immediate visual feedback. Stateful modes remain highlighted by
@@ -150,20 +125,7 @@ private val legacyDefinitions = listOf(
         showQuickActionConfirmation(id)
         when (id) {
             "sort" -> sheet = "sort"
-            "sleep_timer" -> { onOpenSettings(); onSettingsPage("sleep"); onSettingsSheetVisible(true) }
             "api_mode" -> { onOpenSettings(); onSettingsPage("api-mode"); onSettingsSheetVisible(true) }
-            "audio_mode_battery" -> {
-                playbackViewModel?.setPlaybackProfile(AudioMode.BATTERY, HardwareAcceleration.ADAPTIVE)
-            }
-            "audio_mode_balanced" -> {
-                playbackViewModel?.setPlaybackProfile(AudioMode.BALANCED, HardwareAcceleration.AUTOMATIC)
-            }
-            "audio_mode_hifi" -> {
-                playbackViewModel?.setPlaybackProfile(AudioMode.HIFI, HardwareAcceleration.FULL)
-            }
-            "audio_mode_sleepy" -> {
-                playbackViewModel?.setPlaybackProfile(AudioMode.SLEEPY, HardwareAcceleration.ADAPTIVE)
-            }
             "diagnostics" -> {
                 onOpenSettings(); onSettingsPage("system-diagnostics"); onSettingsSheetVisible(true)
             }

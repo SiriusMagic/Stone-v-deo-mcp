@@ -64,7 +64,7 @@ import com.zirakusa.stone.nativeapp.feature.player.tags.VideoTagEditorSheet
 /** Song currently played as audio only; mirrored from StoneApp for the options menu. */
 internal object AudioOnlySelection { var id by mutableStateOf<String?>(null) }
 
-enum class PlayerTool { Tags, Equalizer, Playlist, Share, Speed, Ringtone, Sleep,
+enum class PlayerTool { Tags, Equalizer, Playlist, Share, Speed, Ringtone,
     FloatingWindow, Delete }
 
 private data class ToolRow(val icon: androidx.compose.ui.graphics.vector.ImageVector, val label: Int,
@@ -114,7 +114,6 @@ internal data class PlayerOptionExtra(val icon: androidx.compose.ui.graphics.vec
         add(ToolRow(Icons.Default.Share, R.string.share, PlayerTool.Share))
         add(ToolRow(Icons.Default.Speed, R.string.speed, PlayerTool.Speed))
         add(ToolRow(Icons.Default.Notifications, R.string.set_ringtone, PlayerTool.Ringtone))
-        add(ToolRow(Icons.Default.Timer, R.string.sleep_timer, PlayerTool.Sleep))
         add(ToolRow(Icons.Default.Delete, R.string.delete, PlayerTool.Delete))
     }
     // A video playing in "audio only" mode has no picture, so a floating window makes no sense.

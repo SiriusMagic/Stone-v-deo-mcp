@@ -50,8 +50,8 @@ class LibraryScreenTest {
         compose.onNodeWithText(text(R.string.videos)).assertIsSelected()
         compose.onNodeWithContentDescription(text(R.string.search)).assertExists()
         compose.onNodeWithText(text(R.string.no_videos)).assertIsDisplayed()
-        compose.onNodeWithText(text(R.string.songs)).performScrollTo().performClick()
-        compose.onNodeWithText(text(R.string.songs)).assertIsSelected()
+        compose.onNodeWithText(text(R.string.tab_music)).performScrollTo().performClick()
+        compose.onNodeWithText(text(R.string.tab_music)).assertIsSelected()
         compose.onNodeWithText(text(R.string.no_songs)).assertIsDisplayed()
         onView(isRoot()).captureRoboImage("build/screenshots/stone-home-empty.png")
         compose.onNodeWithContentDescription(text(R.string.choose_folder)).performClick()
@@ -145,7 +145,7 @@ class LibraryScreenTest {
             StoneTheme { Surface(color = StonePalette.Background) { LibraryScreen(LibraryState(songs, hasFolder = true), true, {},
                 { _, tracks -> queue = tracks }, Modifier.fillMaxSize()) } }
         }
-        compose.onNodeWithText(text(R.string.songs)).performScrollTo().performClick()
+        compose.onNodeWithText(text(R.string.tab_music)).performScrollTo().performClick()
         compose.onRoot().captureRoboImage("build/screenshots/stone-home-songs.png")
         // The search bar is fixed under the header; there is no magnifier to open it.
         compose.onNodeWithContentDescription(text(R.string.search_toggle)).assertDoesNotExist()
@@ -178,7 +178,7 @@ class LibraryScreenTest {
                     Modifier.fillMaxSize().padding(insets), currentId = song.id)
             }
         } }
-        compose.onNodeWithText(text(R.string.songs)).performScrollTo().performClick()
+        compose.onNodeWithText(text(R.string.tab_music)).performScrollTo().performClick()
         compose.onRoot().captureRoboImage("build/screenshots/stone-home-miniplayer.png")
         compose.onNodeWithContentDescription(text(R.string.play)).performClick()
         assertEquals(1, toggles)

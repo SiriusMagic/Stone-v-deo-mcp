@@ -17,7 +17,6 @@ internal object StoneSettingsActions {
         ?: throw ActionException("Playback service not running; open Stone."))
     private fun playlist(id: String) = host().playlists.firstOrNull { it.id == id }
         ?: throw ActionException("No playlist with that id. Use playlist_list.")
-    private val adjustableKeys = AudioLevels.adjustable.map { it.key }
     private val accelerationKeys = HardwareAcceleration.entries.map { it.key }
     /** Simple on/off settings that are read from storage when used (some apply after reopening Stone). */
     private val options = listOf("autoRescan", "notifyNewFiles", "musicReminders", "shakeToReport")
@@ -46,30 +45,13 @@ internal object StoneSettingsActions {
             val target = playlist(args.getString("playlistId"))
             host().deletePlaylist(target.id); ok("Playlist '${target.name}' deleted")
         },
-        // ---- audio levels (Ajustes › Niveles de audio) ----
-        StoneAction("audio.get_levels", "Volume ceiling (maxPercent) and software gain of each audio mode, and the active mode.",
+        // ---- audio level (Stone Video is always Cine, 0–300 %) ----
+        StoneAction("audio.get_levels", "Volume ceiling (maxPercent) and software gain of each audio mode, and the active mode (always hifi = Cine in Stone Video).",
             ActionRisk.READ) {
             JSONObject().put("activeMode", host().playback.audioMode.key).put("modes", JSONArray(AudioMode.entries.map { mode ->
                 JSONObject().put("mode", mode.key).put("maxPercent", mode.maxVolumePercent)
                     .put("gainPercent", (mode.gain * 100).roundToInt()).put("adjustable", mode in AudioLevels.adjustable)
             }))
-        },
-        StoneAction("audio.set_level", "Change the volume ceiling and/or gain of an audio mode (Ajustes › Niveles de audio). " +
-            "Omitted values keep their current setting.", ActionRisk.REVERSIBLE, listOf(
-            ActionParam("mode", "string", "Audio mode.", true, adjustableKeys),
-            ActionParam("maxPercent", "integer", "Maximum volume 10-300 %."),
-            ActionParam("gainPercent", "integer", "Software gain 1-100 % (lower = quieter)."))) { args ->
-            val mode = AudioLevels.adjustable.first { it.key == args.getString("mode") }
-            val max = args.optInt("maxPercent", mode.maxVolumePercent)
-            val gain = args.optInt("gainPercent", (mode.gain * 100).roundToInt())
-            if (max !in 10..300) throw ActionException("maxPercent must be between 10 and 300.")
-            if (gain !in 1..100) throw ActionException("gainPercent must be between 1 and 100.")
-            AudioLevels.set(store(), mode, max, gain / 100f)
-            if (host().playback.audioMode == mode) host().setAudioMode(mode)
-            ok("${mode.key}: max $max %, gain $gain %")
-        },
-        StoneAction("audio.reset_levels", "Restore the default level of every audio mode.", ActionRisk.REVERSIBLE) {
-            AudioLevels.reset(store()); host().setAudioMode(host().playback.audioMode); ok("Audio levels restored")
         },
         // ---- remaining settings ----
         StoneAction("settings.get", "All of Stone's settings: transitions, crossfade, hardware acceleration, audio mode, " +

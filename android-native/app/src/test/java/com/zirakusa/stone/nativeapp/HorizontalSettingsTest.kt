@@ -68,8 +68,8 @@ class HorizontalSettingsTest {
     @Test fun videosTabHoldsEveryVideo() {
         fun video(ms: Long) = com.zirakusa.stone.core.Song("content://v/$ms.mp4", "v", "a", "", "f", ms, 1, 1, isVideo = true)
         listOf(0L, 60_000L, 3_700_000L).forEach { assertTrue(LibraryTab.Videos.accepts(video(it))) }
-        assertFalse(LibraryTab.Songs.accepts(video(60_000)))
-        assertEquals(LibraryTab.Videos, LibraryTab.entries.first())
+        assertFalse(LibraryTab.Music.accepts(video(60_000)))
+        assertEquals(LibraryTab.Music, LibraryTab.entries.first())
     }
 
     @Test fun shortsAndMusicVideosHaveTheirOwnTabs() {
@@ -80,7 +80,9 @@ class HorizontalSettingsTest {
         assertTrue(LibraryTab.Shorts.accepts(short)); assertFalse(LibraryTab.Shorts.accepts(clip))
         assertTrue(LibraryTab.MusicVideos.accepts(clip)); assertFalse(LibraryTab.MusicVideos.accepts(short))
         assertTrue(LibraryTab.Folders.accepts(short) && LibraryTab.Videos.accepts(clip))
-        assertEquals(listOf(LibraryTab.Videos, LibraryTab.Shorts, LibraryTab.Folders, LibraryTab.Playlists,
-            LibraryTab.MusicVideos, LibraryTab.Songs), LibraryTab.entries.take(6))
+        assertEquals(listOf(LibraryTab.Music, LibraryTab.Videos, LibraryTab.Shorts, LibraryTab.Folders, LibraryTab.Playlists,
+            LibraryTab.MusicVideos, LibraryTab.Genres), LibraryTab.entries)
+        val terror = video("Eso", 6_000_000, 1920, 1080).copy(genre = "Terror")
+        assertTrue(LibraryTab.Genres.accepts(terror)); assertFalse(LibraryTab.Genres.accepts(terror.copy(isVideo = false)))
     }
 }

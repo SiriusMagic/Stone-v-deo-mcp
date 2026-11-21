@@ -61,7 +61,6 @@ import com.zirakusa.stone.nativeapp.feature.player.video.enterVideoPictureInPict
     when (sheets.tool) {
         PlayerTool.Speed -> SpeedSheet(state, playback, close)
         PlayerTool.Equalizer -> EqualizerSheet(state, playback, progress, song = targetSong, close = close)
-        PlayerTool.Sleep -> SleepSheet(state, playback, close)
         PlayerTool.Tags -> targetSong?.let { TagEditorSheet(it, close = close, saved = edited) }
         PlayerTool.Ringtone -> targetSong?.let { RingtoneSheet(it, close) }
         PlayerTool.Playlist -> targetSong?.let { PlaylistPickerSheet(it, playlists, onCreatePlaylist, onAddToPlaylist, close) }
