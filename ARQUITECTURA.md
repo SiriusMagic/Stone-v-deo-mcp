@@ -1,4 +1,7 @@
-# Arquitectura de Stone
+# Arquitectura de Stone Video
+
+> Copia de Stone 1.7.23 dedicada a video. Lo propio de esta app: `core/VideoKind.kt` (Shorts y MV),
+> `feature/library/components/LibraryTabs.kt` (pestañas) y el ancho/alto en el escaneo. El relay es el de Stone.
 
 Stone es una app de música y video para Android (Kotlin) con un **servidor MCP** dentro del
 teléfono, para que Claude, ChatGPT y otros agentes la controlen, y un **relay** en Cloudflare que
@@ -14,7 +17,7 @@ Stone/
 ├── README.md · CHANGELOG.md
 ├── docs/                           # Documentación, planes y migración a Kotlin
 │
-├── relay/                          # Enlace público https://…/d/<teléfono>/mcp (Cloudflare Worker)
+├── (relay: se usa el de Stone)      # Enlace público https://…/d/<teléfono>/mcp
 │   ├── src/index.js                # Reenvía cada petición al teléfono por un WebSocket saliente
 │   └── wrangler.toml               # Sin secretos: el relay no guarda tokens, solo el hash del teléfono
 │

@@ -16,6 +16,9 @@ data class Song(
     val artworkUri: String = "",
     /** Genre tag ("Electrónica", "Rock"…); empty when the file has none. */
     val genre: String = "",
+    /** Picture size as shown (rotation already applied); 0 when unknown or not a video. */
+    val width: Int = 0,
+    val height: Int = 0,
 ) {
     val id: String get() = "local:$uri"
     val artworkSource: String get() = artworkUri.ifBlank { uri }

@@ -71,4 +71,16 @@ class HorizontalSettingsTest {
         assertFalse(LibraryTab.Songs.accepts(video(60_000)))
         assertEquals(LibraryTab.Videos, LibraryTab.entries.first())
     }
+
+    @Test fun shortsAndMusicVideosHaveTheirOwnTabs() {
+        fun video(title: String, ms: Long, w: Int, h: Int) =
+            com.zirakusa.stone.core.Song("content://v/$title", title, "", "", "f", ms, 1, 1, isVideo = true, width = w, height = h)
+        val short = video("baile", 40_000, 1080, 1920)
+        val clip = video("Artista - Tema (Video Oficial)", 210_000, 1920, 1080)
+        assertTrue(LibraryTab.Shorts.accepts(short)); assertFalse(LibraryTab.Shorts.accepts(clip))
+        assertTrue(LibraryTab.MusicVideos.accepts(clip)); assertFalse(LibraryTab.MusicVideos.accepts(short))
+        assertTrue(LibraryTab.Folders.accepts(short) && LibraryTab.Videos.accepts(clip))
+        assertEquals(listOf(LibraryTab.Videos, LibraryTab.Shorts, LibraryTab.Folders, LibraryTab.Playlists,
+            LibraryTab.MusicVideos, LibraryTab.Songs), LibraryTab.entries.take(6))
+    }
 }

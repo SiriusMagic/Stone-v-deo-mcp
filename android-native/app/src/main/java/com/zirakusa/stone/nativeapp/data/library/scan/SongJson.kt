@@ -21,6 +21,8 @@ object SongJson {
         put("isVideo", song.isVideo)
         put("artworkUri", song.artworkUri)
         put("genre", song.genre)
+        if (song.width > 0) put("width", song.width)
+        if (song.height > 0) put("height", song.height)
         put("lyrics", JSONArray(song.lyrics))
         put("syncedLyrics", JSONArray().apply {
             song.syncedLyrics.forEach { put(lineJson(it)) }
@@ -48,7 +50,7 @@ object SongJson {
         item.optJSONArray("syncedLyrics")?.let { values -> List(values.length()) {
             line(values.getJSONObject(it))
         } } ?: emptyList(), item.optBoolean("isVideo", false), item.optString("artworkUri", ""),
-        item.optString("genre", ""))
+        item.optString("genre", ""), item.optInt("width", 0), item.optInt("height", 0))
 
     fun lrc(song: Song): String = if (song.syncedLyrics.isNotEmpty()) {
         LyricsParser.toLrc(song.syncedLyrics)

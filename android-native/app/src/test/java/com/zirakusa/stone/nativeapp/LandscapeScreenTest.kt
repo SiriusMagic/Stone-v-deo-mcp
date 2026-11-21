@@ -37,6 +37,8 @@ class LandscapeScreenTest {
         compose.onNodeWithContentDescription(label(R.string.settings)).assertIsDisplayed()
         compose.onNodeWithTag("compact-player-title").assertIsDisplayed()
         compose.onNodeWithTag("compact-player-artist").assertIsDisplayed()
+        // Stone Video opens on Videos; the songs are one tab away.
+        compose.onNodeWithText(label(R.string.songs)).performScrollTo().performClick()
         compose.onNodeWithText("Song 02").assertIsDisplayed()
         compose.onRoot().captureRoboImage("build/screenshots/$name.png")
     }
@@ -101,6 +103,8 @@ class LandscapeScreenTest {
 
     @Test fun emptyLibraryDoesNotCreatePlaybackControls() {
         compose.setContent { LandscapeTestContent(songs = emptyList()) }
+        compose.onNodeWithText(label(R.string.no_videos)).assertIsDisplayed()
+        compose.onNodeWithText(label(R.string.songs)).performScrollTo().performClick()
         compose.onNodeWithText(label(R.string.no_songs)).assertIsDisplayed()
         compose.onNodeWithText(label(R.string.choose_song_to_play)).assertIsDisplayed()
         compose.onNodeWithContentDescription(label(R.string.pause)).assertDoesNotExist()

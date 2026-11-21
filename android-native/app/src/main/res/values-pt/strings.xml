@@ -4,7 +4,7 @@
     <string name="choose_song_to_play">Escolha uma música para tocar</string>
     <string name="open_player">Abrir player</string>
     <string name="open_video">Abrir vídeo</string>
-    <string name="app_name">Stone</string>
+    <string name="app_name">Stone Vídeo</string>
     <string name="stone">Stone</string>
     <string name="choose_folder">Adicionar pasta</string>
     <string name="search">Buscar músicas, artistas, álbuns…</string>
@@ -340,7 +340,6 @@
     <string name="tags_format_unsupported">Este formato ainda não permite editar tags (compatíveis: MP3, FLAC, M4A).</string>
     <string name="audio_mode_sleepy">Dorminhoco</string>
     <string name="audio_mode_sleepy_info" formatted="false">Para ouvir na cama sem incomodar: o volume máximo fica em 10&#160;% e até o nível mais baixo soa suave. Economiza bateria.</string>
-    <plurals name="folder_count"><item quantity="one">%1$d pasta</item><item quantity="many">%1$d pastas</item><item quantity="other">%1$d pastas</item></plurals>
     <string name="video_rotate">Girar tela</string>
     <string name="video_rewind_10">Voltar 10 s</string>
     <string name="video_forward_10">Avançar 10 s</string>
@@ -631,4 +630,6 @@
     <string name="api_usage_title">Uso do token</string>
     <string name="api_usage_hint">Descreve para que o vais usar (aparece no hub).</string>
     <string name="api_token_link_label_hub">Token (link para o hub)</string>
+    <string name="tab_shorts">Shorts</string>
+    <string name="tab_music_videos">Clipes</string>
 </resources>

@@ -36,12 +36,14 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     onPlay: (Song, List<Song>) -> Unit, onFolder: () -> Unit,
     compact: Boolean, videoLibraryLayout: VideoLibraryLayout,
     onVideoLibraryLayoutChange: (VideoLibraryLayout) -> Unit,
-    onVideoOptions: (Song) -> Unit, onDelete: (Song) -> Unit, onTagsSaved: () -> Unit) {
+    onVideoOptions: (Song) -> Unit, onDelete: (Song) -> Unit, onTagsSaved: () -> Unit,
+    startInFolders: Boolean = false, shorts: Boolean = false) {
     val selection = remember { VideoSelectionState() }
-    var folderBrowser by rememberSaveable { mutableStateOf(false) }
+    var folderBrowser by rememberSaveable { mutableStateOf(startInFolders) }
     var selectedFolder by rememberSaveable { mutableStateOf<String?>(null) }
     val visible = selectedFolder?.let { folder -> videos.filter { it.folder == folder } } ?: videos
-    val effectiveLayout = if (compact) VideoLibraryLayout.GRID else videoLibraryLayout
+    // Shorts are vertical: always a two-column grid of tall cards.
+    val effectiveLayout = if (compact || shorts) VideoLibraryLayout.GRID else videoLibraryLayout
     VideoSelectionDialogs(selection, visible, onDelete, onTagsSaved)
     Column(modifier.fillMaxWidth()) {
         if (selection.active) Box(Modifier.padding(horizontal = 12.dp)) {
@@ -65,7 +67,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
                 if (!folderBrowser) selectedFolder = null
             }) { Icon(if (folderBrowser) Icons.Default.VideoLibrary else Icons.Default.Folder,
                 stringResource(R.string.video_folders)) }
-            if (!compact && selectedFolder == null) LayoutSelector(videoLibraryLayout, onVideoLibraryLayoutChange,
+            if (!compact && !shorts && selectedFolder == null) LayoutSelector(videoLibraryLayout, onVideoLibraryLayoutChange,
                 Modifier.testTag("video-layout-toggle"))
         }
         when {
@@ -85,7 +87,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
             }
             visible.isNotEmpty() && effectiveLayout == VideoLibraryLayout.GRID ->
                 LazyVerticalGrid(
-                    columns = GridCells.Adaptive(170.dp),
+                    columns = if (shorts) GridCells.Adaptive(150.dp) else GridCells.Adaptive(170.dp),
                     modifier = Modifier.weight(1f).fillMaxWidth().testTag("video-grid"),
                     contentPadding = PaddingValues(start = 16.dp, end = 16.dp,
                         top = 4.dp, bottom = 24.dp),
@@ -98,7 +100,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
                             play = { selection.click(video) { onPlay(video, visible) } },
                             onOptions = { onVideoOptions(video) }, checked = selection.checked(video),
                             onLongClick = { if (!selection.active) selection.start(video) },
-                            onEdit = edit)
+                            onEdit = edit, aspect = if (shorts) 9f / 16f else 16f / 9f)
                     }
                 }
             visible.isNotEmpty() ->

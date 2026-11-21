@@ -5,6 +5,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import com.zirakusa.stone.core.Song
 import com.zirakusa.stone.core.LyricsParser
+import com.zirakusa.stone.core.VideoKind
 import com.zirakusa.stone.nativeapp.data.library.lyrics.EmbeddedLyricsReader
 
 /** Port of Stone's metadata reader, without its React Native bridge. */
@@ -18,9 +19,16 @@ class AudioMetadataReader(private val context: Context) {
             reader.setDataSource(context, uri)
             fun text(key: Int) = reader.extractMetadata(key)?.takeIf(String::isNotBlank)
             val lyrics = LyricsParser.parse(embeddedLyrics.read(uri))
+            // Videos keep an empty artist when untagged, so they are not mistaken for music videos (MV tab).
+            val hasVideo = text(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO) == "yes"
+            val (width, height) = if (hasVideo) VideoKind.displaySize(
+                text(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)?.toIntOrNull() ?: 0,
+                text(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)?.toIntOrNull() ?: 0,
+                text(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION)?.toIntOrNull() ?: 0) else 0 to 0
             fallback.copy(
                 title = text(MediaMetadataRetriever.METADATA_KEY_TITLE) ?: fallback.title,
-                artist = text(MediaMetadataRetriever.METADATA_KEY_ARTIST) ?: fallback.artist,
+                artist = text(MediaMetadataRetriever.METADATA_KEY_ARTIST) ?: if (hasVideo) "" else fallback.artist,
+                width = width, height = height,
                 album = text(MediaMetadataRetriever.METADATA_KEY_ALBUM) ?: fallback.album,
                 genre = text(MediaMetadataRetriever.METADATA_KEY_GENRE).orEmpty(),
                 durationMs = text(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLongOrNull() ?: 0,

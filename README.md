@@ -1,17 +1,9 @@
-# Stone
+# Stone Video
 
-Código de Stone y comienzo de su migración a Android nativo con Kotlin.
+Reproductor de video para Android con servidor MCP, hecho a partir de Stone 1.7.23.
 
-- **`android-native/`**: nueva app Kotlin, organizada por biblioteca, reproducción y pantallas.
-  Abre esa carpeta en Android Studio. [Guía de compilación](android-native/README.md).
-- **`frontend/`**: Stone Expo/React Native conservada, con los cambios previos de 1.3.3.
-- **`backend/`**: servidor original de descargas.
-- **`docs/MIGRACION-KOTLIN.md`**: [funciones trasladadas y pendientes](docs/MIGRACION-KOTLIN.md).
-
-Ruta en este entorno: `/workspace/stone/android-native`.
-El repositorio publicado es `https://github.com/SiriusMagic/Stone`.
-El APK final se encuentra en `android-native/app/build/outputs/apk/debug/app-debug.apk`.
-
-## APK debug actualizado
-
-[Descargar Stone 1.5.13 (APK debug)](https://github.com/SiriusMagic/Stone/raw/main/android-native/app/build/outputs/apk/debug/app-debug.apk)
+- Pestañas: **Videos · Shorts · Carpetas · Playlists · MV · Canciones** (y Artistas, Álbumes, Géneros).
+- **Shorts**: videos verticales (alto > ancho) de hasta 10 min; si no se sabe el tamaño, los de menos de 1 min.
+- **MV**: videos musicales («video oficial», «lyric video»…, carpeta «Música», o con artista y duración de canción).
+- Modo MCP, relay y «Redireccionar a Hub» igual que Stone (servidor `stone-video`).
+- APK: `android-native/StoneVideo-<versión>.apk`. Se instala junto a Stone.

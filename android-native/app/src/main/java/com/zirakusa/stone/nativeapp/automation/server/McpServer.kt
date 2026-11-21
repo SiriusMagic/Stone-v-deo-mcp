@@ -266,7 +266,7 @@ object McpServer {
                 "initialize" -> JSONObject()
                     .put("protocolVersion", params.optString("protocolVersion").takeIf { it in protocolVersions } ?: protocolVersions.first())
                     .put("capabilities", JSONObject().put("tools", JSONObject().put("listChanged", false)))
-                    .put("serverInfo", JSONObject().put("name", "stone").put("title", "Stone").put("version", BuildConfig.VERSION_NAME))
+                    .put("serverInfo", JSONObject().put("name", "stone-video").put("title", "Stone Video").put("version", BuildConfig.VERSION_NAME))
                     .put("instructions", "Controls the Stone music/video player on this phone. Call stone_help to find a tool by " +
                         "intention. Search the library first (library_search) to get song ids; player_state shows what is playing. " +
                         "Edit tools accept dryRun=true to preview changes; every edit is backed up and metadata_undo reverts it. " +

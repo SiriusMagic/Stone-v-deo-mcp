@@ -7,12 +7,12 @@ android {
     namespace = "com.zirakusa.stone.nativeapp"
     compileSdk = 36
     defaultConfig {
-        // Preview can coexist with Stone 1.3.2; never overwrite its user data.
-        applicationId = "com.zirakusa.stone.kotlin.preview"
+        // Stone Video installs next to Stone: its own id, its own data.
+        applicationId = "com.zirakusa.stone.video"
         minSdk = 26
         targetSdk = 35
-        versionCode = 57
-        versionName = "1.7.23"
+        versionCode = 1
+        versionName = "0.1.0"
         // Public relay that gives each phone a fixed HTTPS link (see ../relay). Empty = local only.
         // Set it with -PstoneRelayUrl=https://… or stoneRelayUrl in gradle.properties.
         val relayUrl = (project.findProperty("stoneRelayUrl") as String?).orEmpty().trimEnd('/')

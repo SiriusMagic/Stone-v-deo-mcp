@@ -140,12 +140,12 @@ internal fun VideoThumbnail(song: Song, selected: Boolean, modifier: Modifier = 
 @Composable
 fun VideoGridCard(song: Song, selected: Boolean = false, play: () -> Unit,
     onOptions: () -> Unit = {}, checked: Boolean? = null, onLongClick: (() -> Unit)? = null,
-    onEdit: (() -> Unit)? = null) {
+    onEdit: (() -> Unit)? = null, aspect: Float = 16f / 9f) {
     Column(Modifier.fillMaxWidth().combinedClickable(onLongClick = onLongClick, onClick = play)) {
         VideoThumbnail(
             song = song,
             selected = selected,
-            modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f),
+            modifier = Modifier.fillMaxWidth().aspectRatio(aspect),
             onOptions = onOptions.takeIf { checked == null },
             checked = checked
         )

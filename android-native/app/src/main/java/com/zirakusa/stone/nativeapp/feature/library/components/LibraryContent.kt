@@ -36,7 +36,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     modifier: Modifier = Modifier, onCreatePlaylist: (String) -> Unit = {},
     onRemoveFromPlaylist: (String, Song) -> Unit = { _, _ -> },
     onDelete: (Song) -> Unit = {}, onAudioOnly: (Song) -> Unit = {},
-    onOpenFolders: () -> Unit = {}, compact: Boolean = false,
+    compact: Boolean = false,
     onVideoOptions: (Song) -> Unit = {},
     videoLibraryLayout: VideoLibraryLayout = VideoLibraryLayout.GRID,
     onVideoLibraryLayoutChange: (VideoLibraryLayout) -> Unit = {},
@@ -51,17 +51,17 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
     }
     val noGenre = stringResource(R.string.genre_unknown)
     val groupKey: (Song) -> String = when (tab) {
-        LibraryTab.Folders -> { song -> song.folder }
         LibraryTab.Artists -> { song -> song.artist }
         LibraryTab.Albums -> { song -> song.album }
         LibraryTab.Genres -> { song -> song.genre.trim().ifBlank { noGenre } }
         else -> { _ -> "" }
     }
-    val grouped = tab in listOf(LibraryTab.Folders, LibraryTab.Artists, LibraryTab.Albums, LibraryTab.Genres)
+    val grouped = tab in listOf(LibraryTab.Artists, LibraryTab.Albums, LibraryTab.Genres)
     val mediaSongs = songs.filter(tab::accepts)
     if (tab.isVideo) {
         VideoLibraryContent(mediaSongs, state, currentId, modifier, onPlay, onFolder,
-            compact, videoLibraryLayout, onVideoLibraryLayoutChange, onVideoOptions, onDelete, selectionActions.onTagsSaved)
+            compact, videoLibraryLayout, onVideoLibraryLayoutChange, onVideoOptions, onDelete, selectionActions.onTagsSaved,
+            startInFolders = tab == LibraryTab.Folders, shorts = tab == LibraryTab.Shorts)
         return
     }
     val visible = if (collection != null) mediaSongs.filter { groupKey(it) == collection } else mediaSongs
@@ -86,22 +86,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.color
                     IconButton(onClick = onFolder, enabled = !state.scanning) {
                         Icon(Icons.Default.CreateNewFolder, stringResource(R.string.choose_folder))
                     }
-                    IconButton(onClick = onOpenFolders) {
-                        Icon(Icons.Default.Folder, stringResource(R.string.folders))
-                    }
                     LayoutSelector(songLayout, { StoneLook.chooseSongLayout(it.key) })
-                }
-            }
-            if (!compact && tab == LibraryTab.Folders && collection == null) item {
-                // Same header as Songs: count + add-folder icon at the start of the section.
-                val folderCount = remember(mediaSongs) { mediaSongs.mapTo(HashSet(), groupKey).size }
-                Row(Modifier.fillMaxWidth().padding(horizontal = 4.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically) {
-                    Text(pluralStringResource(R.plurals.folder_count, folderCount, folderCount), Modifier.weight(1f),
-                        color = StonePalette.SongSubtitle, fontSize = 15.sp)
-                    IconButton(onClick = onFolder, enabled = !state.scanning) {
-                        Icon(Icons.Default.CreateNewFolder, stringResource(R.string.choose_folder))
-                    }
                 }
             }
             if (managing) item {

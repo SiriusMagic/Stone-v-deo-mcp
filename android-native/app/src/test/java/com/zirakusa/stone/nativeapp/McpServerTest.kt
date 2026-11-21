@@ -139,7 +139,7 @@ class McpServerTest {
             val posted = raw("POST $endpoint HTTP/1.1\r\nContent-Length: ${init.length}\r\n\r\n$init")
             assertTrue(posted.startsWith("HTTP/1.1 202"))
             val message = generateSequence { reader.readLine() }.first { it.startsWith("data: {") }
-            assertEquals("stone", JSONObject(message.removePrefix("data: ")).getJSONObject("result")
+            assertEquals("stone-video", JSONObject(message.removePrefix("data: ")).getJSONObject("result")
                 .getJSONObject("serverInfo").getString("name"))
         }
     }
@@ -246,7 +246,7 @@ class McpServerTest {
     @Test fun initializeAndListTools() {
         val init = rpc("initialize", JSONObject().put("protocolVersion", "2025-06-18")).getJSONObject("result")
         assertEquals("2025-06-18", init.getString("protocolVersion"))
-        assertEquals("stone", init.getJSONObject("serverInfo").getString("name"))
+        assertEquals("stone-video", init.getJSONObject("serverInfo").getString("name"))
         val tools = rpc("tools/list").getJSONObject("result").getJSONArray("tools")
         val names = (0 until tools.length()).map { tools.getJSONObject(it).getString("name") }
         assertTrue(names.containsAll(listOf("player_play", "library_search", "metadata_update", "appearance_set_theme")))

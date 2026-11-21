@@ -4,7 +4,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,51 +13,49 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.semantics.selected as selectedSemantics
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zirakusa.stone.core.Song
+import com.zirakusa.stone.core.VideoKind
 import com.zirakusa.stone.nativeapp.R
-import com.zirakusa.stone.nativeapp.ui.components.*
 import com.zirakusa.stone.nativeapp.ui.theme.StonePalette
-import com.zirakusa.stone.nativeapp.feature.settings.api.color
-import com.zirakusa.stone.nativeapp.feature.settings.api.label
 
+/** Stone Video puts video first: Videos, Shorts, Carpetas (of videos), Playlists, MV; music after. */
 enum class LibraryTab(val label: Int) {
-    Videos(R.string.videos), Songs(R.string.songs),
-    Playlists(R.string.playlists), Folders(R.string.folders), Artists(R.string.artists), Albums(R.string.albums), Genres(R.string.genres);
+    Videos(R.string.videos), Shorts(R.string.tab_shorts), Folders(R.string.folders), Playlists(R.string.playlists),
+    MusicVideos(R.string.tab_music_videos), Songs(R.string.songs), Artists(R.string.artists), Albums(R.string.albums),
+    Genres(R.string.genres);
 
-    val isVideo: Boolean get() = this == Videos
+    val isVideo: Boolean get() = this == Videos || this == Shorts || this == Folders || this == MusicVideos
 
-    /** Videos holds every video; the other tabs every song. */
-    fun accepts(song: com.zirakusa.stone.core.Song): Boolean = if (this == Videos) song.isVideo else !song.isVideo
+    /** Videos and Carpetas hold every video; Shorts and MV follow [VideoKind]; the music tabs every song. */
+    fun accepts(song: Song): Boolean = when (this) {
+        Videos, Folders -> song.isVideo
+        Shorts -> VideoKind.isShort(song)
+        MusicVideos -> VideoKind.isMusicVideo(song)
+        else -> !song.isVideo
+    }
 }
 
+/** Big bold tab names with a short accent bar under the active one. */
 @Composable fun LibraryTabs(selected: LibraryTab, landscape: Boolean = false, onSelect: (LibraryTab) -> Unit) {
-    Row(Modifier.padding(top = if (landscape) 0.dp else 6.dp).height(if (landscape) 48.dp else 56.dp).fillMaxWidth()
-        .horizontalScroll(rememberScrollState()).selectableGroup().padding(horizontal = if (landscape) 8.dp else 16.dp),
-        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+    Row(Modifier.padding(top = if (landscape) 0.dp else 4.dp).height(if (landscape) 48.dp else 58.dp).fillMaxWidth()
+        .horizontalScroll(rememberScrollState()).selectableGroup().padding(horizontal = if (landscape) 8.dp else 12.dp),
+        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
         LibraryTab.entries.forEach { tab ->
             val active = tab == selected
-            val color = if (active) { if (landscape) StonePalette.Yellow else StonePalette.Blue } else StonePalette.Chip
-            val activeText = if (landscape) StonePalette.Background else Color.White
-            Row(Modifier.height(36.dp).widthIn(min = 78.dp).clip(CircleShape).background(color)
-                .border(1.dp, if (active) color else StonePalette.Border, CircleShape)
+            Column(Modifier.clip(RoundedCornerShape(10.dp))
                 .selectable(active, role = Role.Tab, onClick = { onSelect(tab) })
-                .semantics(mergeDescendants = true) { selectedSemantics = active }
-                .padding(horizontal = 14.dp),
-                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                if (tab.isVideo) StoneIcon(StoneGlyph.Video,
-                    color = if (active) activeText else StonePalette.Muted, size = 16)
-                Text(stringResource(tab.label), modifier = Modifier
-                    .selectable(active, role = Role.Tab, onClick = { onSelect(tab) })
-                    .semantics { selectedSemantics = active },
-                    color = if (active) activeText else StonePalette.Secondary,
-                    fontSize = 14.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.sp)
+                .padding(horizontal = 8.dp, vertical = 4.dp),
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(stringResource(tab.label),
+                    color = if (active) StonePalette.Text else StonePalette.Secondary.copy(alpha = .75f),
+                    fontSize = if (landscape) 17.sp else 22.sp,
+                    fontWeight = if (active) FontWeight.ExtraBold else FontWeight.Bold, letterSpacing = 0.sp)
+                Box(Modifier.padding(top = 4.dp).size(width = 26.dp, height = 4.dp).clip(RoundedCornerShape(2.dp))
+                    .background(if (active) StonePalette.Yellow else Color.Transparent))
             }
-            // Small divider between videos and the music tabs.
-            if (tab == LibraryTab.Videos) Box(Modifier.width(1.5.dp).height(22.dp).background(StonePalette.Muted.copy(alpha = .6f)))
         }
     }
 }

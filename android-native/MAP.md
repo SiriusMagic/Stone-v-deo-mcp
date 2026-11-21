@@ -68,16 +68,16 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `NotificationScheduler.kt` (51) Ajustes › Notificaciones:
 
 ## app/data/library/scan
-- `DeviceMediaScanner.kt` (84) Runtime permission needed to read every song and video indexed by Android.
+- `DeviceMediaScanner.kt` (93) Runtime permission needed to read every song and video indexed by Android.
 - `FolderScanner.kt` (77) Uses Stone's selected SAF folder;
 - `ImportedLibraryStore.kt` (39) Legacy app-private media index kept so imports from older releases remain playable.
 - `LibraryCache.kt` (62) Disposable index only;
 - `LibraryRepository.kt` (111) Whole-device scanning is on and Android granted the media permission.
 - `NotMusic.kt` (16) Files other apps leave in Android's media index that are not music, such as their automatic backups ("AutoBackup_20261115_205503821", album "All data
-- `SongJson.kt` (57) Stable representation shared by the library cache and legacy app-private media index.
+- `SongJson.kt` (59) Stable representation shared by the library cache and legacy app-private media index.
 
 ## app/data/library/tags
-- `AudioMetadataReader.kt` (35) Port of Stone's metadata reader, without its React Native bridge.
+- `AudioMetadataReader.kt` (43) Port of Stone's metadata reader, without its React Native bridge.
 - `AudioTagEditor.kt` (94) New front cover (JPEG/PNG bytes) or null to keep the current one.
 - `AudioTagWriters.kt` (261) Pure tag builders (no I/O) so they can be unit tested.
 - `EditJournal.kt` (73) What a tag, lyrics or cover edit replaced, so it can be undone.
@@ -109,7 +109,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/feature/library
 - `LibraryOrdering.kt` (35)
-- `LibraryScreen.kt` (255)
+- `LibraryScreen.kt` (252)
 - `LibraryViewModel.kt` (188) Refreshes which songs have lyrics (background, cached per file).
 - `LibraryViewState.kt` (13) Library order shared by the sort sheet and automation (MCP mode), so both stay in sync.
 - `QuickActions.kt` (42) Single source of truth for home shortcuts.
@@ -121,7 +121,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `HomeNavigationRail.kt` (74)
 - `LandscapeLibraryHeading.kt` (41)
 - `LayoutSelector.kt` (54) Compact / list / "Grande" switch, icons only;
-- `LibraryContent.kt` (243) Callbacks used by long-press selection in the library lists.
+- `LibraryContent.kt` (228) Callbacks used by long-press selection in the library lists.
 - `LibraryEmptyState.kt` (24)
 - `LibraryHeader.kt` (99)
 - `LibraryLayoutFrame.kt` (28) One content call site keeps the library alive when its surrounding layout changes.
@@ -129,7 +129,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `LibrarySelection.kt` (90) "N seleccionado" header with back and select-all, shown after a long press.
 - `LibrarySheets.kt` (61)
 - `LibrarySongRow.kt` (73)
-- `LibraryTabs.kt` (64) Videos holds every video;
+- `LibraryTabs.kt` (62) Stone Video puts video first:
 - `PlaylistCards.kt` (95) Icon and tint in front of a smart playlist title.
 - `PlaylistLibrary.kt` (119)
 - `RecentlyDeletedSheet.kt` (117) Trash:
@@ -137,7 +137,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/feature/library/video
 - `VideoGridCard.kt` (224) Round check used on selected cards.
-- `VideoLibraryContent.kt` (127)
+- `VideoLibraryContent.kt` (129)
 - `VideoLibraryLayout.kt` (16) Presentation used by the portrait video library.
 - `VideoSelection.kt` (60) Long-press selection for video grids/lists (Videos, Shorts, Movies).
 
@@ -285,4 +285,5 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `LyricTimeline.kt` (33) Where playback is inside the lyrics:
 - `Lyrics.kt` (106) One word of an enhanced LRC line (`<mm:ss.xx>word`);
 - `RefreshPolicy.kt` (21) Event-triggered only.
-- `Song.kt` (28) Optional artwork extracted from a Stone package.
+- `Song.kt` (31) Optional artwork extracted from a Stone package.
+- `VideoKind.kt` (38) Pure rules that sort videos into Stone Video's tabs (Shorts, MV).

@@ -79,7 +79,7 @@ private val legacyDefinitions = listOf(
     shakeToReport: Boolean = true,
     onShakeToReportChange: (Boolean) -> Unit = {}) {
     var query by rememberSaveable { mutableStateOf("") }
-    var tab by rememberSaveable { mutableStateOf(LibraryTab.Songs) }
+    var tab by rememberSaveable { mutableStateOf(LibraryTab.Videos) }
     var collection by rememberSaveable { mutableStateOf<String?>(null) }
     var sheet by rememberSaveable { mutableStateOf<String?>(null) }
     var sort by LibraryViewState::sort
@@ -181,7 +181,7 @@ private val legacyDefinitions = listOf(
                 .filterNot { it.id == "equalizer" },
             highlightedQuickActionIds + if (playbackState?.equalizerEnabled == true) setOf("equalizer") else emptySet(),
             expanded = layout.sidebarWidthDp >= 160f,
-            onHome = { tab = LibraryTab.Songs; collection = null; query = ""; onHome() },
+            onHome = { tab = LibraryTab.Videos; collection = null; query = ""; onHome() },
             onAction = dispatchQuickAction, onEqualizer = onEqualizer,
             onSettings = { onOpenSettings(); onSettingsSheetVisible(true) })
     }, player = { showPanel -> playerContent(showPanel, tab.isVideo) }) {
@@ -211,10 +211,7 @@ private val legacyDefinitions = listOf(
         contentState.SaveableStateProvider("${tab.name}:${collection.orEmpty()}") {
         LibraryContent(state, songs, tab, collection, { collection = it }, query.isNotEmpty(),
             canPlay, currentId, onPlay, onFolder, Modifier.fillMaxSize(), onCreatePlaylist,
-            onRemoveFromPlaylist, onDelete, onAudioOnly, onOpenFolders = {
-                tab = LibraryTab.Folders
-                collection = null
-            }, compact = layout.sidebar,
+            onRemoveFromPlaylist, onDelete, onAudioOnly, compact = layout.sidebar,
             onVideoOptions = onVideoOptions,
             videoLibraryLayout = videoLibraryLayout,
             onVideoLibraryLayoutChange = onVideoLibraryLayoutChange,

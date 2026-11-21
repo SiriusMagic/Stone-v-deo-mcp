@@ -4,7 +4,7 @@
     <string name="choose_song_to_play">Wähle einen Song zum Abspielen</string>
     <string name="open_player">Player öffnen</string>
     <string name="open_video">Video öffnen</string>
-    <string name="app_name">Stone</string>
+    <string name="app_name">Stone Video</string>
     <string name="stone">Stone</string>
     <string name="choose_folder">Ordner hinzufügen</string>
     <string name="search">Songs, Künstler, Alben suchen…</string>
@@ -340,7 +340,6 @@
     <string name="tags_format_unsupported">Dieses Format unterstützt noch keine Tag-Bearbeitung (unterstützt: MP3, FLAC, M4A).</string>
     <string name="audio_mode_sleepy">Schlafmütze</string>
     <string name="audio_mode_sleepy_info" formatted="false">Zum Hören im Bett, ohne zu stören: Die Höchstlautstärke bleibt bei 10&#160;% und selbst die niedrigste Stufe klingt sanft. Spart Akku.</string>
-    <plurals name="folder_count"><item quantity="one">%1$d Ordner</item><item quantity="other">%1$d Ordner</item></plurals>
     <string name="video_rotate">Bildschirm drehen</string>
     <string name="video_rewind_10">10 s zurück</string>
     <string name="video_forward_10">10 s vor</string>
@@ -631,4 +630,6 @@
     <string name="api_usage_title">Verwendung des Tokens</string>
     <string name="api_usage_hint">Beschreibe, wofür du ihn nutzt (wird im Hub angezeigt).</string>
     <string name="api_token_link_label_hub">Token (Link für den Hub)</string>
+    <string name="tab_shorts">Shorts</string>
+    <string name="tab_music_videos">Musikvideos</string>
 </resources>

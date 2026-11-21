@@ -4,7 +4,7 @@
     <string name="choose_song_to_play">Scegli un brano da riprodurre</string>
     <string name="open_player">Apri il lettore</string>
     <string name="open_video">Apri il video</string>
-    <string name="app_name">Stone</string>
+    <string name="app_name">Stone Video</string>
     <string name="stone">Stone</string>
     <string name="choose_folder">Aggiungi cartella</string>
     <string name="search">Cerca brani, artisti, album…</string>
@@ -340,7 +340,6 @@
     <string name="tags_format_unsupported">Questo formato non consente ancora di modificare i tag (compatibili: MP3, FLAC, M4A).</string>
     <string name="audio_mode_sleepy">Dormiglione</string>
     <string name="audio_mode_sleepy_info" formatted="false">Per ascoltare a letto senza disturbare: il volume massimo resta al 10&#160;% e anche il livello più basso suona morbido. Risparmia batteria.</string>
-    <plurals name="folder_count"><item quantity="one">%1$d cartella</item><item quantity="many">%1$d cartelle</item><item quantity="other">%1$d cartelle</item></plurals>
     <string name="video_rotate">Ruota schermo</string>
     <string name="video_rewind_10">Indietro di 10 s</string>
     <string name="video_forward_10">Avanti di 10 s</string>
@@ -631,4 +630,6 @@
     <string name="api_usage_title">Uso del token</string>
     <string name="api_usage_hint">Descrivi a cosa ti serve (appare nell\'hub).</string>
     <string name="api_token_link_label_hub">Token (link per l\'hub)</string>
+    <string name="tab_shorts">Shorts</string>
+    <string name="tab_music_videos">Videoclip</string>
 </resources>
