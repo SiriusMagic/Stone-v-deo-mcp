@@ -110,10 +110,11 @@ object ApiTokens {
 
     private fun id() = random(6)
     /**
-     * New secrets: "stn_" + 256 random bits in URL-safe Base64. The prefix lets secret scanners
-     * recognise a leaked Stone token; older hex tokens keep working.
+     * New secrets: "stv_" + 256 random bits in URL-safe Base64 (Stone itself uses "stn_"; Gateway Hub tells the apps
+     * apart by it). The prefix also lets secret scanners
+     * recognise a leaked Stone Video token; older hex and "stn_" tokens keep working.
      */
-    fun secret(): String = "stn_" + java.util.Base64.getUrlEncoder().withoutPadding()
+    fun secret(): String = "stv_" + java.util.Base64.getUrlEncoder().withoutPadding()
         .encodeToString(ByteArray(32).also(SecureRandom()::nextBytes))
     fun random(size: Int): String = ByteArray(size).also(SecureRandom()::nextBytes).joinToString("") { "%02x".format(it) }
 }

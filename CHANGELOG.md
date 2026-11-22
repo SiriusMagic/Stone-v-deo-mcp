@@ -1,5 +1,9 @@
 # Cambios de Stone Video
 
+## 0.4.0 (versionCode 4)
+- Los tokens nuevos del Modo MCP empiezan por **`stv_`** (antes `stn_`, el de Stone): Gateway Hub reconoce cada app por
+  su prefijo y los confundía. Los tokens ya creados siguen funcionando; para vincular con el hub, crea uno nuevo.
+
 ## 0.3.0 (versionCode 3)
 - La pestaña «MV» pasa a llamarse **VM** (videos musicales) en español.
 - **Fuera Playlists:** la pestaña y las opciones «Añadir a playlist» del reproductor, del menú del video y de la

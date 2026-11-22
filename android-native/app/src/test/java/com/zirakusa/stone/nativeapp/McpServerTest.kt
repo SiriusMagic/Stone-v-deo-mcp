@@ -319,7 +319,7 @@ class McpServerTest {
         com.zirakusa.stone.nativeapp.automation.auth.AuthThrottle.reset()
         assertEquals(200, post(ping).first)
         val secret = com.zirakusa.stone.nativeapp.automation.auth.ApiTokens.secret()
-        assertTrue(secret.startsWith("stn_") && secret.length >= 46)
+        assertTrue(secret.startsWith("stv_") && secret.length >= 46)
     }
 
     @Test fun accessModesOnlyAskForCriticalActions() {
