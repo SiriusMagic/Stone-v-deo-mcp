@@ -40,7 +40,8 @@ import com.zirakusa.stone.nativeapp.automation.relay.RelayInfo
  * same port is easy to spot.
  */
 object McpServer {
-    const val DEFAULT_PORT = 8765
+    /** 8766: Stone already uses 8765 on the same phone; sharing it made «Activar MCP» fail with Stone running. */
+    const val DEFAULT_PORT = 8766
     const val PATH = "/mcp"
     private const val TAG = "StoneMcp"
     private val protocolVersions = listOf("2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05")

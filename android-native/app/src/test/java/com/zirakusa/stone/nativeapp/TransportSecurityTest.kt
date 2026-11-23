@@ -44,4 +44,12 @@ class TransportSecurityTest {
             assertFalse("reachable at ${address.hostAddress}", reached)
         }
     }
+
+    /** Stone holds 8765 on the same phone; Stone Video must still start (it failed with «No se pudo iniciar»). */
+    @Test fun startsWhileStoneHoldsItsPort() {
+        java.net.ServerSocket(8765, 1, java.net.InetAddress.getLoopbackAddress()).use {
+            assertTrue(McpServer.DEFAULT_PORT != 8765)
+            assertTrue(McpServer.start("test-token"))
+        }
+    }
 }
