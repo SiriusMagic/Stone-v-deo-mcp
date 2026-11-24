@@ -1,5 +1,10 @@
 # Cambios de Stone Video
 
+## 0.4.2 (versionCode 6)
+- En Gateway Hub, Stone Video es ahora su propio módulo (`video_`) en vez de compartir `music_` con Stone: las dos se
+  vinculan a la vez sin pisarse.
+- **Conectar todas** (Gateway Hub 0.0.21): con un toque en el Hub se activa aquí «Redireccionar a Hub» y queda vinculada.
+
 ## 0.4.1 (versionCode 5)
 - Arreglado «No se pudo iniciar» en Modo MCP: Stone Video usaba el mismo puerto interno que Stone (8765), así que con
   Stone abierta no podía arrancar. Ahora usa el 8766 y las dos funcionan a la vez. Una prueba lo comprueba.
