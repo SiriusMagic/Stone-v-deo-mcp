@@ -1,5 +1,9 @@
 # Cambios de Stone Video
 
+## 0.4.3 (versionCode 7)
+- Lucía (Gateway Hub) puede usar las herramientas de Stone Video en el teléfono, sin internet, mientras «Redireccionar a
+  Hub» esté activado (las mismas reglas que por MCP).
+
 ## 0.4.2 (versionCode 6)
 - En Gateway Hub, Stone Video es ahora su propio módulo (`video_`) en vez de compartir `music_` con Stone: las dos se
   vinculan a la vez sin pisarse.
