@@ -17,9 +17,9 @@ import com.zirakusa.stone.nativeapp.R
  * removing one can leave the app with no launcher entry after an update.
  */
 enum class LauncherIcon(val key: String, val alias: String, val drawable: Int, val label: Int) {
-    // Since 0.5.0 the old aliases carry the new mascots (panda → red panda, koala → otter, fox → kitten).
-    PENGUIN("penguin", "Home", R.drawable.mascot_penguin, R.string.mascot_penguin),
-    OTTER("otter", "HomeKoala", R.drawable.mascot_otter, R.string.mascot_otter),
+    // Since 0.5.0 the old aliases carry the new mascots (panda → red panda, fox → kitten). Since 0.5.1 the otter is the
+    // default in ".Home"; ".HomeKoala" ([LEGACY], the otter in 0.5.0) only moves over to it and is switched off.
+    OTTER("otter", "Home", R.drawable.mascot_otter, R.string.mascot_otter),
     LAMB("lamb", "HomeLamb", R.drawable.mascot_lamb, R.string.mascot_lamb),
     SEAL("seal", "HomeSeal", R.drawable.mascot_seal, R.string.mascot_seal),
     RED_PANDA("red_panda", "HomePanda", R.drawable.mascot_red_panda, R.string.mascot_red_panda),
@@ -27,18 +27,24 @@ enum class LauncherIcon(val key: String, val alias: String, val drawable: Int, v
 
     companion object {
         /** The mascot currently in use, read from the package manager at start-up. */
-        var current by mutableStateOf(PENGUIN)
+        val DEFAULT = OTTER
+        /** The otter's alias in 0.5.0: still in the manifest so an update never leaves Stone without an icon. */
+        const val LEGACY = "HomeKoala"
+        var current by mutableStateOf(DEFAULT)
             private set
 
-        fun from(key: String) = entries.firstOrNull { it.key == key } ?: PENGUIN
+        fun from(key: String) = entries.firstOrNull { it.key == key } ?: DEFAULT
 
         /**
          * Reads which alias is enabled. If none is (for example after updating from a build that
-         * had other icons), the penguin is enabled again so Stone never loses its launcher entry.
+         * had other icons), the otter is enabled again so Stone never loses its launcher entry; the
+         * old otter alias ([LEGACY]) moves over to `.Home`.
          */
         fun load(context: Context) {
             val enabled = entries.firstOrNull { it.isEnabled(context) }
-            if (enabled == null) apply(context, PENGUIN) else current = enabled
+            val legacy = runCatching { context.packageManager.getComponentEnabledSetting(component(context, LEGACY)) }
+                .getOrDefault(PackageManager.COMPONENT_ENABLED_STATE_DISABLED) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+            if (enabled == null || legacy) apply(context, enabled ?: DEFAULT) else current = enabled
         }
 
         /**
@@ -50,8 +56,8 @@ enum class LauncherIcon(val key: String, val alias: String, val drawable: Int, v
             // Enable the new one first so the app always has a launcher entry.
             runCatching { manager.setComponentEnabledSetting(icon.component(context),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP) }
-            entries.filter { it != icon }.forEach {
-                runCatching { manager.setComponentEnabledSetting(it.component(context),
+            (entries.filter { it != icon }.map { it.alias } + LEGACY).forEach {
+                runCatching { manager.setComponentEnabledSetting(component(context, it),
                     PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP) }
             }
             current = icon
@@ -60,12 +66,12 @@ enum class LauncherIcon(val key: String, val alias: String, val drawable: Int, v
         private fun LauncherIcon.isEnabled(context: Context): Boolean {
             val state = runCatching { context.packageManager.getComponentEnabledSetting(component(context)) }
                 .getOrDefault(PackageManager.COMPONENT_ENABLED_STATE_DISABLED)
-            // DEFAULT means "as declared in the manifest": only the penguin alias starts enabled.
+            // DEFAULT means "as declared in the manifest": only ".Home" (the otter) starts enabled.
             return state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED ||
-                (state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT && this == PENGUIN)
+                (state == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT && this == DEFAULT)
         }
 
-        private fun LauncherIcon.component(context: Context) =
-            ComponentName(context, "com.zirakusa.stone.nativeapp.$alias")
+        private fun LauncherIcon.component(context: Context) = component(context, alias)
+        private fun component(context: Context, alias: String) = ComponentName(context, "com.zirakusa.stone.nativeapp.$alias")
     }
 }

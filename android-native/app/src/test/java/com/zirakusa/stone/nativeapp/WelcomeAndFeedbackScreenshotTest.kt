@@ -62,7 +62,7 @@ class WelcomeAndFeedbackScreenshotTest {
         compose.setContent { StoneTheme { Surface(color = StonePalette.Background) {
             Column(Modifier.padding(24.dp)) {
                 LayoutSelector(VideoLibraryLayout.COMPACT, {})
-                MascotPicker(LauncherIcon.PENGUIN) {}
+                MascotPicker(LauncherIcon.OTTER) {}
             }
         } } }
         onView(isRoot()).captureRoboImage("build/screenshots/stone-mascots-layout.png")

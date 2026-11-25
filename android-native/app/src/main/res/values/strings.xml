@@ -339,7 +339,6 @@
     <string name="custom_launcher_icon_hint">La mascota elegida aparece dentro de Stone y como icono en tu pantalla de inicio. Algunos lanzadores tardan unos segundos en actualizarlo.</string>
         <string name="sleep_timer_remaining">Quedan %1$s · hasta las %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
-    <string name="mascot_penguin">Pingüino</string>
     <string name="mascot_otter">Nutria</string>
     <string name="mascot_lamb">Corderito</string>
     <string name="mascot_seal">Foca</string>

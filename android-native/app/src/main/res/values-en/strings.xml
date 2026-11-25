@@ -292,7 +292,6 @@
     <string name="custom_launcher_icon_hint">The chosen mascot appears inside Stone and as the icon on your home screen. Some launchers take a few seconds to update it.</string>
         <string name="sleep_timer_remaining">%1$s left · until %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
-    <string name="mascot_penguin">Penguin</string>
     <string name="mascot_otter">Otter</string>
     <string name="mascot_lamb">Lamb</string>
     <string name="mascot_seal">Seal</string>

@@ -92,5 +92,6 @@ internal fun Color.luminanceIsLight() = (red * .299f + green * .587f + blue * .1
                     fontWeight = if (active) FontWeight.Bold else FontWeight.Normal)
             }
         }
+        repeat(3 - row.size) { androidx.compose.foundation.layout.Spacer(Modifier.weight(1f)) }   // same size in a short row
     }
 }

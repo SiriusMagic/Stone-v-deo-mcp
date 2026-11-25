@@ -372,7 +372,6 @@
     <string name="custom_launcher_icon_hint">La mascotte choisie apparaît dans Stone et comme icône sur l\'écran d\'accueil. Certains lanceurs mettent quelques secondes à l\'actualiser.</string>
         <string name="sleep_timer_remaining">Reste %1$s · jusqu\'à %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
-    <string name="mascot_penguin">Pingouin</string>
     <string name="mascot_otter">Loutre</string>
     <string name="mascot_lamb">Agneau</string>
     <string name="mascot_seal">Phoque</string>

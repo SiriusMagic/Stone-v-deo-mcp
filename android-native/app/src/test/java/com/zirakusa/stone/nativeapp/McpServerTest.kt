@@ -40,7 +40,7 @@ class McpServerTest {
     private var toggles = 0
     private var playlistsCreated = listOf<String>()
     private var sleepMinutes = 0
-    private var launcherIcon = "penguin"
+    private var launcherIcon = "otter"
     private var liked = setOf<String>()
 
     @Before fun start() {

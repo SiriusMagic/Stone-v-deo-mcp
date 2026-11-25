@@ -46,7 +46,7 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.label
     onQuickAction: (String) -> Unit = {}, onMoreQuickActions: () -> Unit = {},
     activeQuickActionIds: Set<String> = emptySet()) {
     Box(Modifier.fillMaxWidth()) {
-    val penguinMotion = remember { Animatable(0f) }
+    val mascotMotion = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically) {
@@ -54,13 +54,13 @@ import com.zirakusa.stone.nativeapp.feature.settings.api.label
             Modifier.size(44.dp).clip(RoundedCornerShape(12.dp)).clickable {
                 onPenguinClick()
                 scope.launch {
-                    penguinMotion.snapTo(0f)
-                    penguinMotion.animateTo(1f, tween(180))
-                    penguinMotion.animateTo(0f, tween(260))
+                    mascotMotion.snapTo(0f)
+                    mascotMotion.animateTo(1f, tween(180))
+                    mascotMotion.animateTo(0f, tween(260))
                 }
             }.graphicsLayer {
-                rotationZ = (penguinMotion.value * 8f) - 4f
-                translationY = (kotlin.math.sin(penguinMotion.value * Math.PI) * -3.5f).toFloat()
+                rotationZ = (mascotMotion.value * 8f) - 4f
+                translationY = (kotlin.math.sin(mascotMotion.value * Math.PI) * -3.5f).toFloat()
             }, stringResource(R.string.stone))
         Spacer(Modifier.width(8.dp))
         Row(Modifier.weight(1f).horizontalScroll(rememberScrollState()),

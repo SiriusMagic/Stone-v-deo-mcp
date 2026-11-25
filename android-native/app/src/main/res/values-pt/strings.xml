@@ -372,7 +372,6 @@
     <string name="custom_launcher_icon_hint">O mascote escolhido aparece dentro do Stone e como ícone na tela inicial. Alguns launchers levam alguns segundos para atualizar.</string>
         <string name="sleep_timer_remaining">Faltam %1$s · até %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
-    <string name="mascot_penguin">Pinguim</string>
     <string name="mascot_otter">Lontra</string>
     <string name="mascot_lamb">Cordeirinho</string>
     <string name="mascot_seal">Foca</string>

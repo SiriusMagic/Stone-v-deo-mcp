@@ -224,7 +224,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `LookColorEditor.kt` (60) Mixer for the free accent colour:
 - `LookColorPalette.kt` (51) Touch palette:
 - `LookSettings.kt` (123) Ajustes › Personalizado:
-- `LookSettingsParts.kt` (97) Small building blocks shared by the Personalizado screens.
+- `LookSettingsParts.kt` (98) Small building blocks shared by the Personalizado screens.
 - `ThemeExtras.kt` (51) Top of "Temas y personalización":
 
 ## app/playback
@@ -267,7 +267,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `VolumeOverlay.kt` (110) Compact volume card.
 
 ## app/ui/theme
-- `LauncherIcon.kt` (72) Stone's mascots.
+- `LauncherIcon.kt` (78) Stone's mascots.
 - `StoneBackdrop.kt` (64) Theme backdrop:
 - `StoneLook.kt` (140) Accent colour that replaces Stone's gold everywhere (lines, highlights, active icons).
 - `StoneTheme.kt` (105) Accent ("dorado" by default);

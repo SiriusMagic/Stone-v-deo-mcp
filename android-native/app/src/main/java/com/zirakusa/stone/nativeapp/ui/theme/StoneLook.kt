@@ -62,7 +62,7 @@ object StoneLook {
     var artworkShape by mutableStateOf("square")
     /** Letter style of the whole app: "roman" (upright, the default) or "italic" (cursiva). */
     var fontStyle by mutableStateOf("roman")
-    /** App-private copy of the image that replaces the penguin, or null. */
+    /** App-private copy of the image that replaces the mascot, or null. */
     var avatarImage by mutableStateOf<String?>(null)
     /** Name shown inside Stone (the launcher label itself can't be changed by an app). */
     var appTitle by mutableStateOf("")

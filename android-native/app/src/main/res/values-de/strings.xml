@@ -372,7 +372,6 @@
     <string name="custom_launcher_icon_hint">Das gewählte Maskottchen erscheint in Stone und als Symbol auf dem Startbildschirm. Manche Launcher brauchen ein paar Sekunden zum Aktualisieren.</string>
         <string name="sleep_timer_remaining">Noch %1$s · bis %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
-    <string name="mascot_penguin">Pinguin</string>
     <string name="mascot_otter">Otter</string>
     <string name="mascot_lamb">Lamm</string>
     <string name="mascot_seal">Robbe</string>

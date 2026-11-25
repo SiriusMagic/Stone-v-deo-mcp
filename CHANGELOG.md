@@ -1,5 +1,9 @@
 # Cambios de Stone Video
 
+## 0.5.1 (versionCode 9)
+- **Sin el Pingüino**: quedan Nutria (ahora la de fábrica), Corderito, Foca, Panda rojo y Gatito, todas del mismo tamaño.
+  Si tenías el Pingüino o la Nutria, pasa sola a la Nutria.
+
 ## 0.5.0 (versionCode 8)
 - **Mascotas nuevas**: Pingüino (la de fábrica), Nutria, Corderito, Foca, Panda rojo y Gatito, con sus auriculares. Se ven
   dentro de la app y como icono de inicio (Personalizado › Mascota e icono de inicio, ahora en dos filas de tres).

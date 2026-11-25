@@ -372,7 +372,6 @@
     <string name="custom_launcher_icon_hint">La mascotte scelta compare dentro Stone e come icona nella schermata home. Alcuni launcher impiegano qualche secondo ad aggiornarla.</string>
         <string name="sleep_timer_remaining">Mancano %1$s · fino alle %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
-    <string name="mascot_penguin">Pinguino</string>
     <string name="mascot_otter">Lontra</string>
     <string name="mascot_lamb">Agnellino</string>
     <string name="mascot_seal">Foca</string>
