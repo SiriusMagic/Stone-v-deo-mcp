@@ -18,7 +18,6 @@ import com.zirakusa.stone.nativeapp.automation.actions.ActionException
 import com.zirakusa.stone.nativeapp.automation.actions.ActionRisk
 import com.zirakusa.stone.nativeapp.automation.actions.StoneAutomation
 import com.zirakusa.stone.nativeapp.automation.actions.StoneGuide
-import com.zirakusa.stone.nativeapp.automation.activity.RequestStats
 import com.zirakusa.stone.nativeapp.automation.auth.AccessMode
 import com.zirakusa.stone.nativeapp.automation.auth.ApiToken
 import com.zirakusa.stone.nativeapp.automation.auth.ApiTokens
@@ -148,7 +147,6 @@ object McpServer {
             // (Cloudflare's own value), or the local caller. Spoofable headers like X-Forwarded-For are ignored,
             // and a valid token is never blocked by someone else's mistakes.
             val origin = if (relay != null) "relay:" + (relay.client ?: "unknown") else "local:" + client.inetAddress?.hostAddress.orEmpty()
-            RequestStats.record("", RequestStats.REJECTED)
             if (AuthThrottle.blocked(origin)) {
                 ServerMetrics.event("authThrottled")
                 return McpHttp.respond(out, 429, error(null, -32001,
@@ -159,8 +157,8 @@ object McpServer {
         if (grant == null) return McpHttp.respond(out, 401,
             error(null, -32001, if (givenToken(request) == null)
                 "Stone: missing token. Send it as 'Authorization: Bearer TOKEN' or add ?token=TOKEN to the URL."
-            else if (isPaused(request)) "Stone: this token is paused. The user can resume it in Stone > Ajustes > Modo MCP."
-            else "Stone: wrong or revoked token. Copy the link again from Stone > Ajustes > Modo MCP."),
+            else if (isPaused(request)) "Stone: this token is paused. The user manages it in Arka."
+            else "Stone: wrong or revoked token. The Modo MCP is turned on from Arka."),
             listOf("WWW-Authenticate: Bearer"))
         ApiTokens.touch(grant.id)
         when {
@@ -241,13 +239,10 @@ object McpServer {
         if (reply != null) runCatching { McpHttp.event(stream, "message", reply.toString()) }
     }
 
-    /** Parses one message or a batch; returns the reply (null for notifications) and whether it initialized. */
-    /**
-     * Lucía (Gateway Hub's voice on this phone) runs one tool without internet, as the hub's own token: the same checks
-     * as through the relay. [HubLink] only calls this while «Redireccionar a Hub» is on.
-     */
-    fun local(body: String): String? = dispatch(body, com.zirakusa.stone.nativeapp.automation.auth.ApiTokens.redirectToken()).first?.toString()
+    /** Lucía (Arka's voice on this phone) runs one request without internet, with Arka's token: the same checks as the relay. */
+    fun local(body: String): String? = dispatch(body, com.zirakusa.stone.nativeapp.automation.auth.ApiTokens.arka()).first?.toString()
 
+    /** Parses one message or a batch; returns the reply (null for notifications) and whether it initialized. */
     private fun dispatch(text: String, grant: ApiToken): Pair<Any?, Boolean> = try {
         if (text.startsWith("[")) {
             val batch = JSONArray(text)
