@@ -1,5 +1,13 @@
 # Cambios de Stone Video
 
+## 0.6.0 (versionCode 10)
+- **El Modo MCP lo controla Arka**: se quita la pantalla «Modo MCP» (Activar MCP, Redireccionar a Hub, Crear token, tokens,
+  Actividad y Analítica). Activarlo, permitirlo en local para Lucía y crear tokens se hace en **Arka › MCP**; Ajustes ›
+  Modo MCP solo muestra el estado y «Abrir Arka». Si ya estaba conectada al hub, sigue con el mismo enlace; los tokens
+  LLM y Hub creados aquí dejan de funcionar (créalos en Arka).
+- Lucía usa las herramientas en el teléfono aunque el enlace público esté apagado; lo decide «Permitir MCP local» en Arka.
+- App más ligera: 5,11 MB → 5,02 MB.
+
 ## 0.5.1 (versionCode 9)
 - **Sin el Pingüino**: quedan Nutria (ahora la de fábrica), Corderito, Foca, Panda rojo y Gatito, todas del mismo tamaño.
   Si tenías el Pingüino o la Nutria, pasa sola a la Nutria.
