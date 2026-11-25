@@ -17,10 +17,13 @@ import com.zirakusa.stone.nativeapp.R
  * removing one can leave the app with no launcher entry after an update.
  */
 enum class LauncherIcon(val key: String, val alias: String, val drawable: Int, val label: Int) {
+    // Since 0.5.0 the old aliases carry the new mascots (panda → red panda, koala → otter, fox → kitten).
     PENGUIN("penguin", "Home", R.drawable.mascot_penguin, R.string.mascot_penguin),
-    PANDA("panda", "HomePanda", R.drawable.mascot_panda, R.string.mascot_panda),
-    KOALA("koala", "HomeKoala", R.drawable.mascot_koala, R.string.mascot_koala),
-    FOX("fox", "HomeFox", R.drawable.mascot_fox, R.string.mascot_fox);
+    OTTER("otter", "HomeKoala", R.drawable.mascot_otter, R.string.mascot_otter),
+    LAMB("lamb", "HomeLamb", R.drawable.mascot_lamb, R.string.mascot_lamb),
+    SEAL("seal", "HomeSeal", R.drawable.mascot_seal, R.string.mascot_seal),
+    RED_PANDA("red_panda", "HomePanda", R.drawable.mascot_red_panda, R.string.mascot_red_panda),
+    KITTEN("kitten", "HomeFox", R.drawable.mascot_kitten, R.string.mascot_kitten);
 
     companion object {
         /** The mascot currently in use, read from the package manager at start-up. */

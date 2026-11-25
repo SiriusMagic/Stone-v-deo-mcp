@@ -1,5 +1,11 @@
 # Cambios de Stone Video
 
+## 0.5.0 (versionCode 8)
+- **Mascotas nuevas**: Pingüino (la de fábrica), Nutria, Corderito, Foca, Panda rojo y Gatito, con sus auriculares. Se ven
+  dentro de la app y como icono de inicio (Personalizado › Mascota e icono de inicio, ahora en dos filas de tres).
+- Se quitan las anteriores (Panda, Koala y Zorro). Si tenías una elegida, pasa sola a la nueva que ocupa su lugar
+  (Panda → Panda rojo, Koala → Nutria, Zorro → Gatito).
+
 ## 0.4.3 (versionCode 7)
 - Lucía (Gateway Hub) puede usar las herramientas de Stone Video en el teléfono, sin internet, mientras «Redireccionar a
   Hub» esté activado (las mismas reglas que por MCP).

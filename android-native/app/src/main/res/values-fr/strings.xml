@@ -373,9 +373,11 @@
         <string name="sleep_timer_remaining">Reste %1$s · jusqu\'à %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
     <string name="mascot_penguin">Pingouin</string>
-    <string name="mascot_panda">Panda</string>
-    <string name="mascot_koala">Koala</string>
-    <string name="mascot_fox">Renard</string>
+    <string name="mascot_otter">Loutre</string>
+    <string name="mascot_lamb">Agneau</string>
+    <string name="mascot_seal">Phoque</string>
+    <string name="mascot_red_panda">Panda roux</string>
+    <string name="mascot_kitten">Chaton</string>
     <string name="feedback_header_hint">Partagez votre suggestion, idée ou problème pour nous aider à améliorer l\'application.</string>
     <string name="feedback_send_report">Envoyer le rapport</string>
     <string name="feedback_send_suggestion">Envoyer la suggestion</string>

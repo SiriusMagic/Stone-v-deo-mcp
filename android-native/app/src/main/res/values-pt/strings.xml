@@ -373,9 +373,11 @@
         <string name="sleep_timer_remaining">Faltam %1$s · até %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
     <string name="mascot_penguin">Pinguim</string>
-    <string name="mascot_panda">Panda</string>
-    <string name="mascot_koala">Coala</string>
-    <string name="mascot_fox">Raposa</string>
+    <string name="mascot_otter">Lontra</string>
+    <string name="mascot_lamb">Cordeirinho</string>
+    <string name="mascot_seal">Foca</string>
+    <string name="mascot_red_panda">Panda-vermelho</string>
+    <string name="mascot_kitten">Gatinho</string>
     <string name="feedback_header_hint">Conte sua sugestão, ideia ou problema para nos ajudar a melhorar o app.</string>
     <string name="feedback_send_report">Enviar relatório</string>
     <string name="feedback_send_suggestion">Enviar sugestão</string>

@@ -365,14 +365,14 @@ class McpServerTest {
 
         val look = rpc("tools/call", JSONObject().put("name", "appearance_set_look").put("arguments",
             JSONObject().put("accentHex", "#3FA7FF").put("textColor", "soft").put("fontScale", 1.2)
-                .put("appTitle", "Mi música").put("launcherIcon", "panda"))).getJSONObject("result")
+                .put("appTitle", "Mi música").put("launcherIcon", "red_panda"))).getJSONObject("result")
         assertFalse(look.getBoolean("isError"))
         assertEquals("custom", StoneLook.accent.key)
         assertEquals("#3FA7FF", StoneLook.hex(StoneLook.customAccent))
         assertEquals(StoneInk.SOFT, StoneLook.textInk)
         assertEquals(1.2f, StoneLook.fontScale)
         assertEquals("Mi música", StoneLook.appTitle)
-        assertEquals("panda", launcherIcon)
+        assertEquals("red_panda", launcherIcon)
         val state = rpc("tools/call", JSONObject().put("name", "appearance_get")).getJSONObject("result").getJSONObject("structuredContent")
         assertEquals("#3FA7FF", state.getString("accentHex"))
 

@@ -8,7 +8,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/automation
 - `ApiMode.kt` (119) User switches for the MCP server (Ajustes › Modo MCP).
-- `HubLink.kt` (54) «Redireccionar a Hub»:
+- `HubLink.kt` (72) «Redireccionar a Hub»:
 
 ## app/automation/actions
 - `AutomationHost.kt` (71) What the running app offers to automation.
@@ -34,7 +34,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/automation/auth
 - `AccessMode.kt` (75) What a token lets an agent do.
-- `ApiTokens.kt` (120) Access tokens of Ajustes › Modo MCP › Seguridad.
+- `ApiTokens.kt` (121) Access tokens of Ajustes › Modo MCP › Seguridad.
 - `AuthContext.kt` (22) Who is making the request being executed:
 - `AuthThrottle.kt` (29) Slows down token guessing:
 
@@ -45,7 +45,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 
 ## app/automation/server
 - `McpHttp.kt` (119) One parsed HTTP/1.1 request;
-- `McpServer.kt` (352) Model Context Protocol server exposing [StoneAutomation] actions as tools.
+- `McpServer.kt` (359) Model Context Protocol server exposing [StoneAutomation] actions as tools.
 - `ServerMetrics.kt` (87) What the MCP server and the relay link actually do, since Stone started, to measure before optimising:
 
 ## app/data/library
@@ -224,7 +224,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `LookColorEditor.kt` (60) Mixer for the free accent colour:
 - `LookColorPalette.kt` (51) Touch palette:
 - `LookSettings.kt` (123) Ajustes › Personalizado:
-- `LookSettingsParts.kt` (94) Small building blocks shared by the Personalizado screens.
+- `LookSettingsParts.kt` (97) Small building blocks shared by the Personalizado screens.
 - `ThemeExtras.kt` (51) Top of "Temas y personalización":
 
 ## app/playback
@@ -267,7 +267,7 @@ si es grande, busca con grep la función antes de leerlo entero.
 - `VolumeOverlay.kt` (110) Compact volume card.
 
 ## app/ui/theme
-- `LauncherIcon.kt` (69) Stone's mascots.
+- `LauncherIcon.kt` (72) Stone's mascots.
 - `StoneBackdrop.kt` (64) Theme backdrop:
 - `StoneLook.kt` (140) Accent colour that replaces Stone's gold everywhere (lines, highlights, active icons).
 - `StoneTheme.kt` (105) Accent ("dorado" by default);

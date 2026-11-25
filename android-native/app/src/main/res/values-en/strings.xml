@@ -293,9 +293,11 @@
         <string name="sleep_timer_remaining">%1$s left · until %2$s</string>
     <string name="crossfade_seconds">%1$d s</string>
     <string name="mascot_penguin">Penguin</string>
-    <string name="mascot_panda">Panda</string>
-    <string name="mascot_koala">Koala</string>
-    <string name="mascot_fox">Fox</string>
+    <string name="mascot_otter">Otter</string>
+    <string name="mascot_lamb">Lamb</string>
+    <string name="mascot_seal">Seal</string>
+    <string name="mascot_red_panda">Red panda</string>
+    <string name="mascot_kitten">Kitten</string>
     <string name="feedback_header_hint">Tell us your suggestion, idea or problem to help us improve the app.</string>
     <string name="feedback_send_report">Send report</string>
     <string name="feedback_send_suggestion">Send suggestion</string>

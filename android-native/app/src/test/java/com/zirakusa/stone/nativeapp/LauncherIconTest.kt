@@ -27,8 +27,10 @@ class LauncherIconTest {
     }
 
     @Test fun choosingAMascotKeepsOneEntry() {
-        LauncherIcon.apply(context, LauncherIcon.FOX)
-        assertEquals(listOf("HomeFox"), launcherEntries())
+        LauncherIcon.apply(context, LauncherIcon.KITTEN)
+        assertEquals(listOf("HomeFox"), launcherEntries())                 // old alias name, new mascot
+        LauncherIcon.apply(context, LauncherIcon.SEAL)
+        assertEquals(listOf("HomeSeal"), launcherEntries())
         LauncherIcon.apply(context, LauncherIcon.PENGUIN)
         assertEquals(listOf("Home"), launcherEntries())
     }
@@ -40,5 +42,12 @@ class LauncherIconTest {
         }
         LauncherIcon.load(context)
         assertEquals(listOf("Home"), launcherEntries())
+    }
+
+    @Test fun sixMascotsEachWithItsOwnEntry() {
+        assertEquals(listOf("penguin", "otter", "lamb", "seal", "red_panda", "kitten"), LauncherIcon.entries.map { it.key })
+        assertEquals(6, LauncherIcon.entries.map { it.alias }.toSet().size)
+        LauncherIcon.entries.forEach { LauncherIcon.apply(context, it); assertEquals(listOf(it.alias), launcherEntries()) }
+        assertEquals(LauncherIcon.PENGUIN, LauncherIcon.from("fox-from-an-old-build"))
     }
 }

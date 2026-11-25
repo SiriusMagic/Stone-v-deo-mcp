@@ -71,10 +71,13 @@ internal fun Color.luminanceIsLight() = (red * .299f + green * .587f + blue * .1
     }
 }
 
-/** Four mascot tiles; the chosen one is outlined with the accent colour. */
-@Composable internal fun MascotPicker(selected: LauncherIcon, onSelect: (LauncherIcon) -> Unit) {
+/** The mascot tiles, three per row; the chosen one is outlined with the accent colour. */
+@Composable internal fun MascotPicker(selected: LauncherIcon, onSelect: (LauncherIcon) -> Unit) =
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) { LauncherIcon.entries.chunked(3).forEach { row -> MascotRow(row, selected, onSelect) } }
+
+@Composable private fun MascotRow(row: List<LauncherIcon>, selected: LauncherIcon, onSelect: (LauncherIcon) -> Unit) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-        LauncherIcon.entries.forEach { mascot ->
+        row.forEach { mascot ->
             val active = mascot == selected
             Column(Modifier.weight(1f).clip(RoundedCornerShape(16.dp)).clickable { onSelect(mascot) },
                 horizontalAlignment = Alignment.CenterHorizontally) {
