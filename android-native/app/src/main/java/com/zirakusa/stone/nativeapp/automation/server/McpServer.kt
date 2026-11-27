@@ -281,7 +281,7 @@ object McpServer {
                     .put("_meta", JSONObject().put(TOKEN_META, JSONObject().put("name", grant.name)
                         .put("kind", grant.kind.key).put("usage", grant.usage).put("mode", grant.mode.key)
                         .put("expiresAt", grant.expiresAt)))
-                "ping" -> JSONObject()
+                "ping" -> McpTrace.track(id, "ping", false) { JSONObject() }
                 "tools/list" -> JSONObject().put("tools", JSONArray(StoneAutomation.available(grant.mode, grant.disabledTools).map { action ->
                     JSONObject().put("name", action.toolName).put("description", action.description)
                         .put("inputSchema", action.inputSchema())

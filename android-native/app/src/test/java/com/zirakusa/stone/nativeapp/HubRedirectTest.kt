@@ -44,6 +44,8 @@ class HubRedirectTest {
     @get:Rule val compose = createComposeRule()
 
     @After fun reset() {
+        ApiMode.enable(false)
+        ApiMode.allowLocal(false)
         if (ApiMode.remote) ApiMode.turnRemote(false)
         McpServer.stop(); ApiMode.relayUrl = ""; ApiTokens.replaceForTests(emptyList())
     }
@@ -89,6 +91,8 @@ class HubRedirectTest {
         val list = """{"jsonrpc":"2.0","id":3,"method":"tools/list"}"""
         assertEquals("NOT_SAME_DEVELOPER", HubLink.tool(false, list).getString(HubLink.KEY_ERROR))
         assertEquals("BAD_REQUEST", HubLink.tool(true, "").getString(HubLink.KEY_ERROR))
+        assertEquals("LOCAL_DISABLED", HubLink.tool(true, list).getString(HubLink.KEY_ERROR))
+        ApiMode.allowLocal(true)
         val answer = org.json.JSONObject(HubLink.tool(true, list).getString("response")!!)
         assertEquals(3, answer.getInt("id"))
         assertTrue(answer.getJSONObject("result").getJSONArray("tools").toString().contains("player_set_shuffle"))
@@ -100,7 +104,9 @@ class HubRedirectTest {
         } } }
         compose.waitForIdle()
         compose.onNodeWithText("Abrir Arka").assertExists()
-        compose.onNodeWithText("Apagado").assertExists()
+        compose.onNodeWithText("Activar MCP").assertExists()
+        compose.onNodeWithText("Permitir MCP local").assertExists()
+        compose.onNodeWithText("Redireccionar a Hub").assertExists()
         assertTrue(compose.onAllNodesWithText("Crear token").fetchSemanticsNodes().isEmpty())
         assertTrue(compose.onAllNodesWithText("Analítica").fetchSemanticsNodes().isEmpty())
         onView(isRoot()).captureRoboImage("build/screenshots/stone-api-by-arka.png")
